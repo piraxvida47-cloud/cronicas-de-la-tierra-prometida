@@ -1,4 +1,4 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Crónicas de la Tierra Prometida V0.3.2 — La Primera Puerta</title><style>*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;background:#07111c;color:#f4ead7;font-family:Georgia,serif}button,input{font:inherit}.screen{position:fixed;inset:0;z-index:5}.char{display:grid;place-items:center;background:radial-gradient(circle at 70% 40%,#765532,#0a1119 65%)}.box{width:min(1000px,94vw);height:min(650px,92vh);display:grid;grid-template-columns:1fr 1fr;background:#07111df5;border:1px solid #d8ad5570;border-radius:18px;overflow:hidden;box-shadow:0 25px 80px #000b}.preview{display:grid;place-items:center;background:linear-gradient(#c9a36d,#6f5138)}.hero{width:170px;height:350px;position:relative;filter:drop-shadow(0 15px 10px #0007)}.head{position:absolute;left:53px;top:20px;width:65px;height:72px;border-radius:50%;background:#8b5a3c}.hair{position:absolute;left:48px;top:12px;width:75px;height:58px;border-radius:50%;background:#251711}.body{position:absolute;left:30px;top:88px;width:112px;height:185px;background:#b8a37f;clip-path:polygon(18% 0,82% 0,100% 100%,0 100%)}.belt{position:absolute;left:38px;top:185px;width:96px;height:14px;background:#5a3b25}.leg{position:absolute;top:260px;width:34px;height:82px;background:#493321}.l{left:42px}.r{left:96px}.sand{position:absolute;top:337px;width:45px;height:12px;background:#24160e;border-radius:8px}.sl{left:34px}.sr{left:91px}.info{padding:42px;display:flex;flex-direction:column}.ey{font:12px Arial;letter-spacing:3px;color:#d9b96e}.title{font-size:38px;color:#f0d18a;margin:8px 0 25px}.lab{font:12px Arial;color:#aeb7bf;margin:12px 0 6px}.input{width:100%;padding:12px;background:#101d29;border:1px solid #50606e;border-radius:7px;color:white}.choices{display:flex;gap:8px;flex-wrap:wrap}.choice{width:auto;margin:0;padding:9px 12px;background:#101d29;border:1px solid #40515f;color:#eee;border-radius:6px}.choice.active{border-color:#e0b75f}.quote{font:italic 13px/1.5 Arial;color:#bdc4c8;margin-top:22px}.start{margin-top:auto;width:100%;padding:14px;background:linear-gradient(#e0b75f,#a97624);border:0;border-radius:7px;font-weight:bold;cursor:pointer}#game{position:fixed;inset:0}.hud{position:fixed;inset:0;z-index:3;pointer-events:none}.panel{background:#06111ddd;border:1px solid #c99d4b66;border-radius:10px;box-shadow:0 10px 30px #0008;backdrop-filter:blur(6px)}.status{position:absolute;left:16px;top:16px;width:250px;padding:12px}.small{font:11px Arial;color:#bac1c6}.bar{height:8px;background:#18222b;border-radius:8px;overflow:hidden;margin:4px 0 6px}.fill{height:100%}.hp{background:#bd4a49}.water{background:#4799d1}.stam{background:#9caf50}.objective{position:absolute;right:16px;top:16px;width:310px;padding:13px;font:13px Arial}.gold{color:#f3c96a;font-weight:bold}.controls{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);padding:9px 15px;font:12px Arial}.cross{position:absolute;left:50%;top:50%;width:12px;height:12px;transform:translate(-50%,-50%);opacity:.5}.cross:before,.cross:after{content:"";position:absolute;background:#fff}.cross:before{width:12px;height:1px;top:6px}.cross:after{height:12px;width:1px;left:6px}.hidden{display:none!important}#toast{position:fixed;left:50%;top:72%;transform:translate(-50%,-50%);z-index:9;background:#050b12ee;border:1px solid #d8ad55;padding:11px 18px;border-radius:8px;font:13px Arial;opacity:0;transition:.25s}.dialog{position:fixed;left:50%;bottom:10%;transform:translateX(-50%);z-index:8;width:min(650px,90vw);padding:18px}.dialog button{float:right;background:#162432;color:white;border:1px solid #52606d;border-radius:5px;padding:6px 12px}.dname{color:#f3c96a;font-weight:bold;margin-bottom:7px}.dtext{font:15px/1.5 Arial}@media(max-width:800px){.box{grid-template-columns:1fr}.preview{display:none}.info{padding:25px}.title{font-size:30px}.objective{width:240px}.status{width:205px}}
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Crónicas de la Tierra Prometida V0.3.3 — La Primera Puerta</title><style>*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;background:#07111c;color:#f4ead7;font-family:Georgia,serif}button,input{font:inherit}.screen{position:fixed;inset:0;z-index:5}.char{display:grid;place-items:center;background:radial-gradient(circle at 70% 40%,#765532,#0a1119 65%)}.box{width:min(1000px,94vw);height:min(650px,92vh);display:grid;grid-template-columns:1fr 1fr;background:#07111df5;border:1px solid #d8ad5570;border-radius:18px;overflow:hidden;box-shadow:0 25px 80px #000b}.preview{display:grid;place-items:center;background:linear-gradient(#c9a36d,#6f5138)}.hero{width:170px;height:350px;position:relative;filter:drop-shadow(0 15px 10px #0007)}.head{position:absolute;left:53px;top:20px;width:65px;height:72px;border-radius:50%;background:#8b5a3c}.hair{position:absolute;left:48px;top:12px;width:75px;height:58px;border-radius:50%;background:#251711}.body{position:absolute;left:30px;top:88px;width:112px;height:185px;background:#b8a37f;clip-path:polygon(18% 0,82% 0,100% 100%,0 100%)}.belt{position:absolute;left:38px;top:185px;width:96px;height:14px;background:#5a3b25}.leg{position:absolute;top:260px;width:34px;height:82px;background:#493321}.l{left:42px}.r{left:96px}.sand{position:absolute;top:337px;width:45px;height:12px;background:#24160e;border-radius:8px}.sl{left:34px}.sr{left:91px}.info{padding:42px;display:flex;flex-direction:column}.ey{font:12px Arial;letter-spacing:3px;color:#d9b96e}.title{font-size:38px;color:#f0d18a;margin:8px 0 25px}.lab{font:12px Arial;color:#aeb7bf;margin:12px 0 6px}.input{width:100%;padding:12px;background:#101d29;border:1px solid #50606e;border-radius:7px;color:white}.choices{display:flex;gap:8px;flex-wrap:wrap}.choice{width:auto;margin:0;padding:9px 12px;background:#101d29;border:1px solid #40515f;color:#eee;border-radius:6px}.choice.active{border-color:#e0b75f}.quote{font:italic 13px/1.5 Arial;color:#bdc4c8;margin-top:22px}.start{margin-top:auto;width:100%;padding:14px;background:linear-gradient(#e0b75f,#a97624);border:0;border-radius:7px;font-weight:bold;cursor:pointer}#game{position:fixed;inset:0}.hud{position:fixed;inset:0;z-index:3;pointer-events:none}.panel{background:#06111ddd;border:1px solid #c99d4b66;border-radius:10px;box-shadow:0 10px 30px #0008;backdrop-filter:blur(6px)}.status{position:absolute;left:16px;top:16px;width:250px;padding:12px}.small{font:11px Arial;color:#bac1c6}.bar{height:8px;background:#18222b;border-radius:8px;overflow:hidden;margin:4px 0 6px}.fill{height:100%}.hp{background:#bd4a49}.water{background:#4799d1}.stam{background:#9caf50}.objective{position:absolute;right:16px;top:16px;width:310px;padding:13px;font:13px Arial}.gold{color:#f3c96a;font-weight:bold}.controls{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);padding:9px 15px;font:12px Arial}.cross{position:absolute;left:50%;top:50%;width:12px;height:12px;transform:translate(-50%,-50%);opacity:.5}.cross:before,.cross:after{content:"";position:absolute;background:#fff}.cross:before{width:12px;height:1px;top:6px}.cross:after{height:12px;width:1px;left:6px}.hidden{display:none!important}#toast{position:fixed;left:50%;top:72%;transform:translate(-50%,-50%);z-index:9;background:#050b12ee;border:1px solid #d8ad55;padding:11px 18px;border-radius:8px;font:13px Arial;opacity:0;transition:.25s}.dialog{position:fixed;left:50%;bottom:10%;transform:translateX(-50%);z-index:8;width:min(650px,90vw);padding:18px}.dialog button{float:right;background:#162432;color:white;border:1px solid #52606d;border-radius:5px;padding:6px 12px}.dname{color:#f3c96a;font-weight:bold;margin-bottom:7px}.dtext{font:15px/1.5 Arial}@media(max-width:800px){.box{grid-template-columns:1fr}.preview{display:none}.info{padding:25px}.title{font-size:30px}.objective{width:240px}.status{width:205px}}
 .intro{display:grid;place-items:center;background:radial-gradient(circle at 50% 42%,#5e4a32 0,#17120d 45%,#05070a 100%);overflow:hidden}
 .intro:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,#0009),radial-gradient(ellipse at 50% 85%,#d99a3b22,transparent 45%);pointer-events:none}
 .introbox{position:relative;width:min(1180px,94vw);height:min(720px,92vh);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
@@ -49,6 +49,135 @@
 .hs-settings{left:5%;top:49.8%;width:22%;height:5.8%}
 .hs-help{left:5%;top:56.5%;width:22%;height:5.8%}
 .hs-exit{left:5%;top:63.2%;width:22%;height:5.8%}.mainmenu:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.70) 0%,rgba(0,0,0,.38) 42%,rgba(0,0,0,.08) 72%),linear-gradient(0deg,rgba(0,0,0,.38),transparent 45%,rgba(0,0,0,.18));}.menucontent{position:relative;z-index:2;width:min(560px,46vw);min-width:300px;margin-left:5vw;padding-top:10vh}.menutitle{font-size:clamp(34px,5vw,72px);line-height:.88;margin:0;text-transform:uppercase;color:#f4d28b;text-shadow:0 5px 18px #000;letter-spacing:1px}.menusub{font:15px Arial;letter-spacing:3px;margin:20px 0 28px;color:#f2eee6}.menubuttons{display:flex;flex-direction:column;gap:12px;width:min(330px,80vw)}.menubtn{height:56px;border:1px solid #c99d4b;background:linear-gradient(180deg,#252525e8,#0d0d0de8);color:#eee7dc;font:700 20px Georgia;letter-spacing:2px;text-align:left;padding:0 24px;border-radius:6px;cursor:pointer;box-shadow:0 5px 18px #0008;transition:.18s}.menubtn:hover{transform:translateX(5px);background:linear-gradient(180deg,#6b4a1ee8,#19130ce8);color:#fff2c9}.menubtn.play{background:linear-gradient(180deg,#b97916f2,#5d3107f2);color:#fff0c4}.menubtn:disabled{opacity:.55;cursor:not-allowed}.menuquote{position:absolute;left:0;bottom:-170px;max-width:430px;font:italic 16px/1.45 Georgia;color:#eee9dd}.menubadge{position:fixed;right:4vw;bottom:4vh;z-index:3;border:1px solid #c99d4b99;border-radius:8px;padding:12px 22px;background:#090b0dcc;font:12px Arial;letter-spacing:1px;color:#f2d69a}@media(max-width:800px){.menucontent{width:88vw;margin-left:6vw;padding-top:7vh}.mainmenu{background-position:60% center}.menuquote{display:none}.menubadge{display:none}}
+
+/* ===== V0.3.3 · CREACIÓN CINEMATOGRÁFICA ===== */
+.char{
+  display:block;
+  background:#0a0b0d;
+  color:#f3ead8;
+  overflow:hidden;
+}
+.char-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 22% 48%,rgba(217,156,73,.28),transparent 28%),
+    linear-gradient(90deg,rgba(6,8,10,.15),rgba(6,8,10,.76) 58%,rgba(6,8,10,.96)),
+    linear-gradient(180deg,#8e6a43 0%,#30251b 52%,#080a0d 100%);
+}
+.char-bg:after{
+  content:"";position:absolute;inset:0;opacity:.28;
+  background-image:radial-gradient(circle,rgba(255,255,255,.12) 0 1px,transparent 1px);
+  background-size:5px 5px;mix-blend-mode:soft-light;
+}
+.char-vignette{
+  position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 150px #000, inset 0 -90px 100px #0008;
+}
+.char-header{
+  position:absolute;left:5vw;top:5vh;z-index:2;
+}
+.char-ey{
+  font:11px Arial;letter-spacing:5px;color:#e0bd72;
+}
+.char-chapter{
+  margin-top:8px;font:12px Arial;letter-spacing:2px;color:#d5cbbd;
+}
+.char-layout{
+  position:absolute;inset:13vh 5vw 9vh;
+  z-index:2;display:grid;grid-template-columns:minmax(330px,1fr) minmax(390px,520px);
+  gap:5vw;align-items:center;
+}
+.char-art{
+  height:100%;min-height:430px;position:relative;display:grid;place-items:center;
+  border-right:1px solid rgba(214,176,100,.20);
+}
+.art-light{
+  position:absolute;left:48%;top:46%;width:230px;height:230px;border-radius:50%;
+  background:#e4ad5a22;box-shadow:0 0 100px 55px #d58b3322;
+}
+.hero-big{transform:scale(1.35);margin-top:-25px}
+.hero-big .body{background:#b8a37f}
+.staff{
+  position:absolute;width:9px;height:285px;left:139px;top:78px;
+  background:linear-gradient(90deg,#3b2618,#8b6037,#3b2618);
+  transform:rotate(8deg);border-radius:8px;
+  box-shadow:0 0 10px #0008;
+}
+.staff:before{
+  content:"";position:absolute;width:25px;height:35px;left:-8px;top:-12px;
+  border:5px solid #6f4b2a;border-bottom:0;border-radius:18px 18px 0 0;
+}
+.art-caption{
+  position:absolute;bottom:3vh;left:8%;text-align:left;
+  display:flex;flex-direction:column;gap:4px;
+}
+.art-caption span{font:700 14px Arial;letter-spacing:3px;color:#f1d28f}
+.art-caption small{font:13px Arial;color:#cfc6b7}
+.char-card{
+  align-self:center;max-height:86vh;overflow:auto;
+  padding:34px 38px;background:linear-gradient(145deg,rgba(12,17,22,.94),rgba(7,10,13,.88));
+  border:1px solid #c89a5266;border-radius:14px;
+  box-shadow:0 25px 80px #000b, inset 0 1px #fff1;
+  backdrop-filter:blur(9px);
+}
+.char-card h1{
+  margin:7px 0 9px;font-size:clamp(30px,3vw,44px);font-weight:normal;
+  color:#f1d18b;letter-spacing:.5px;
+}
+.char-card p{margin:0 0 22px;font:14px/1.55 Arial;color:#c4c0b9;max-width:430px}
+.char-card .lab{display:block;margin:15px 0 7px;color:#b9b3a9;font:10px Arial;letter-spacing:2px}
+.char-card .input{
+  width:100%;padding:13px 14px;background:#0b1218dd;border:1px solid #5b6570;
+  border-radius:6px;color:#f7f1e7;outline:none;
+}
+.char-card .input:focus{border-color:#d7ac5c;box-shadow:0 0 0 2px #d7ac5c22}
+.char-card .choices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.char-card #clothes{grid-template-columns:repeat(2,1fr)}
+.char-card .choice{
+  min-height:62px;text-align:left;padding:9px 11px;border:1px solid #3e4a54;
+  background:#0d161eee;color:#e9e2d6;border-radius:6px;cursor:pointer;
+  transition:.16s;
+}
+.char-card .choice b{display:block;font:700 11px Arial;letter-spacing:1.2px}
+.char-card .choice span{display:block;margin-top:5px;font:10px Arial;color:#929ca4}
+.char-card .choice:hover{border-color:#a9874f;transform:translateY(-1px)}
+.char-card .choice.active{
+  border-color:#e0b75f;background:linear-gradient(145deg,#2a2114,#111820);
+  box-shadow:inset 0 0 18px #d69a3820;
+}
+.char-note{
+  display:flex;gap:10px;align-items:center;margin:20px 0 18px;padding:11px 12px;
+  border-top:1px solid #c99d4b33;border-bottom:1px solid #c99d4b33;
+  font:11px/1.4 Arial;color:#aaa9a4;
+}
+.note-mark{color:#e1b968;font-size:15px}
+.char-actions{display:flex;gap:10px;align-items:center}
+.back-btn{
+  padding:13px 15px;background:transparent;border:1px solid #58636c;color:#c8c3ba;
+  border-radius:6px;cursor:pointer;font:700 11px Arial;letter-spacing:1px;
+}
+.back-btn:hover{border-color:#d0aa62;color:#f0d18c}
+.char-card .start{
+  flex:1;margin-top:0;padding:14px 18px;border-radius:6px;
+  border:1px solid #f1d18a66;box-shadow:0 8px 25px #0009;
+}
+.char-card .start span{font-size:20px;margin-left:8px}
+.char-footer{
+  position:absolute;right:4vw;bottom:3vh;z-index:2;font:10px Arial;letter-spacing:2px;color:#827d74;
+}
+@media(max-width:900px){
+  .char-layout{inset:12vh 5vw 5vh;grid-template-columns:1fr}
+  .char-art{display:none}
+  .char-card{width:min(560px,94vw);margin:auto}
+}
+@media(max-width:520px){
+  .char-card{padding:24px 20px}
+  .char-card .choices{grid-template-columns:1fr}
+  .char-card #clothes{grid-template-columns:1fr}
+  .char-actions{flex-direction:column}
+  .back-btn,.char-card .start{width:100%}
+}
+
 </style></head><body>
 <section id="mainmenu" class="mainmenu">
   <div class="menu-stage">
@@ -63,15 +192,98 @@
   </div>
 </section>
 <section id="intro" class="screen intro hidden"><div class="introbox"><div class="introey">CRÓNICAS DE LA TIERRA PROMETIDA</div><h1 class="introtitle">LA PRIMERA PUERTA</h1><div class="gate" id="introGate"><div class="stone"></div><div class="opening"></div><div class="leaf"></div><div class="light"></div></div><div class="introsub">Un camino comienza frente a una puerta. Lo que hay detrás todavía no ha sido revelado.</div><button id="begin" class="introstart">COMENZAR EL CAMINO →</button></div><div class="vignette"></div></section>
-<section id="character" class="screen char hidden"><div class="box"><div class="preview"><div class="hero"><div class="hair"></div><div class="head"></div><div class="body"></div><div class="belt"></div><div class="leg l"></div><div class="leg r"></div><div class="sand sl"></div><div class="sand sr"></div></div></div><div class="info"><div class="ey">CAPÍTULO I · EL CAMINO COMIENZA</div><div class="title">Crea tu personaje</div><div class="lab">NOMBRE</div><input id="name" class="input" maxlength="18" value="Eliab"><div class="lab">APARIENCIA</div><div class="choices" id="faces"><button class="choice active">Viajero</button><button class="choice">Pastor</button><button class="choice">Guerrero</button></div><div class="lab">VESTIMENTA</div><div class="choices" id="clothes"><button class="choice active">Desierto</button><button class="choice">Campamento</button></div><div class="quote">“El camino comienza con un solo paso. Explora, sobrevive y descubre lo que te espera más allá de la puerta.”</div><button id="enter" class="start">ENTRAR AL MUNDO DE LA AVENTURA →</button></div></div></section>
+<section id="character" class="screen char hidden">
+  <div class="char-bg"></div>
+  <div class="char-vignette"></div>
+  <div class="char-header">
+    <div class="char-ey">CRÓNICAS DE LA TIERRA PROMETIDA</div>
+    <div class="char-chapter">CAPÍTULO I · EL CAMINO COMIENZA</div>
+  </div>
+
+  <div class="char-layout">
+    <div class="char-art">
+      <div class="art-light"></div>
+      <div class="hero hero-big">
+        <div class="hair"></div><div class="head"></div><div class="body"></div>
+        <div class="belt"></div><div class="leg l"></div><div class="leg r"></div>
+        <div class="sand sl"></div><div class="sand sr"></div>
+        <div class="staff"></div>
+      </div>
+      <div class="art-caption">
+        <span>TU VIAJERO</span>
+        <small>Elige quién dará el primer paso.</small>
+      </div>
+    </div>
+
+    <div class="char-card">
+      <div class="card-top">
+        <div>
+          <div class="ey">PERSONAJE</div>
+          <h1>Crea tu viajero</h1>
+          <p>Tu camino comienza frente a una puerta. Elige tu identidad antes de entrar en la Tierra Prometida.</p>
+        </div>
+      </div>
+
+      <label class="lab" for="name">NOMBRE DEL VIAJERO</label>
+      <input id="name" class="input" maxlength="18" value="Eliab" autocomplete="off">
+
+      <div class="lab">CAMINO</div>
+      <div class="choices" id="faces">
+        <button class="choice active" data-face="Viajero"><b>VIAJERO</b><span>Equilibrado</span></button>
+        <button class="choice" data-face="Pastor"><b>PASTOR</b><span>Vida del campamento</span></button>
+        <button class="choice" data-face="Guerrero"><b>GUERRERO</b><span>Firme ante el peligro</span></button>
+      </div>
+
+      <div class="lab">VESTIMENTA</div>
+      <div class="choices" id="clothes">
+        <button class="choice active" data-clothes="Desierto"><b>DESIERTO</b><span>Ligera y resistente</span></button>
+        <button class="choice" data-clothes="Campamento"><b>CAMPAMENTO</b><span>Preparada para la noche</span></button>
+      </div>
+
+      <div class="char-note">
+        <span class="note-mark">✦</span>
+        <span>Tu elección acompañará al personaje durante esta aventura.</span>
+      </div>
+
+      <div class="char-actions">
+        <button id="backToMenu" class="back-btn">← VOLVER</button>
+        <button id="enter" class="start">ENTRAR AL MUNDO <span>→</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="char-footer">V0.3.3 · LA PRIMERA PUERTA</div>
+</section>
 <canvas id="game"></canvas><div id="hud" class="hud hidden"><div class="status panel"><b id="hudName">Eliab</b><div class="small">Viajero del campamento</div><div class="small">VIDA</div><div class="bar"><div id="hp" class="fill hp" style="width:100%"></div></div><div class="small">AGUA</div><div class="bar"><div id="water" class="fill water" style="width:72%"></div></div><div class="small">RESISTENCIA</div><div class="bar"><div id="stam" class="fill stam" style="width:100%"></div></div></div><div class="objective panel"><div class="gold">MISIÓN PRINCIPAL</div><div id="obj">Acércate a la primera puerta y descubre cómo comienza tu camino.</div></div><div class="controls panel">WASD / Flechas · Shift correr · E interactuar</div><div class="cross"></div></div><div id="dialog" class="dialog panel hidden"><button id="close">Cerrar</button><div class="dname" id="dn"></div><div class="dtext" id="dt"></div></div><div id="toast"></div><div id="doorPrompt">E · Abrir la Primera Puerta</div>
 <script>
 (function(){
   const $=id=>document.getElementById(id);
   const menu=$('mainmenu'), character=$('character'), hud=$('hud');
-  const nameInput=$('nameInput'), gender=$('gender');
+  const nameInput=$('name');
 
   window.gameStarted=false;
+  window.selectedFace='Viajero';
+  window.selectedClothes='Desierto';
+
+  document.querySelectorAll('#faces .choice').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('#faces .choice').forEach(x=>x.classList.remove('active'));
+      btn.classList.add('active');
+      window.selectedFace=btn.dataset.face||btn.textContent.trim();
+    });
+  });
+  document.querySelectorAll('#clothes .choice').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('#clothes .choice').forEach(x=>x.classList.remove('active'));
+      btn.classList.add('active');
+      window.selectedClothes=btn.dataset.clothes||btn.textContent.trim();
+    });
+  });
+  $('backToMenu')?.addEventListener('click',()=>{
+    character?.classList.add('hidden');
+    menu?.classList.remove('hidden');
+  });
+
 
   function info(title,text){
     if(typeof window.dialog==='function') window.dialog(title,text);
@@ -89,7 +301,7 @@
 
   $('enter')?.addEventListener('click',()=>{
     window.playerDisplayName=(nameInput?.value||'').trim()||'Viajero';
-    window.playerGender=gender?.value||'masculino';
+    window.playerFace=window.selectedFace||'Viajero'; window.playerClothes=window.selectedClothes||'Desierto';
     window.gameStarted=true;
     character?.classList.add('hidden');
     hud?.classList.remove('hidden');
@@ -123,7 +335,7 @@ const menuPlay=document.querySelector('#menuPlay');
 menuPlay.onclick=()=>{mainmenu.classList.add('hidden');character.classList.remove('hidden');};
 document.querySelector('#menuSettings').onclick=()=>toast('Ajustes estarán disponibles en una próxima versión.');
 document.querySelector('#menuHelp').onclick=()=>dialog('Ayuda','En la aventura podrás moverte con WASD o las flechas, correr con Shift e interactuar con E. Comienza creando tu personaje.');
-document.querySelectorAll('.choices').forEach(x=>x.onclick=e=>{if(e.target.classList.contains('choice')){x.querySelectorAll('.choice').forEach(y=>y.classList.remove('active'));e.target.classList.add('active')}});enter.onclick=()=>{active=true;character.classList.add('hidden');hud.classList.remove('hidden');hudName.textContent=name.value.trim()||'Eliab';obj.textContent='Acércate a la Primera Puerta y presiona E.';toast('La puerta te espera. Sigue el camino.');cam.position.set(player.position.x+10,7,player.position.z+15);ctl.target.set(player.position.x,2,player.position.z)};addEventListener('keydown',e=>{if(e.key.toLowerCase()!=='e'||!active)return;
+document.querySelectorAll('.choices').forEach(x=>x.onclick=e=>{if(e.target.classList.contains('choice')){x.querySelectorAll('.choice').forEach(y=>y.classList.remove('active'));e.target.classList.add('active')}});enter.onclick=()=>{active=true;window.gameStarted=true;character.classList.add('hidden');hud.classList.remove('hidden');hudName.textContent=name.value.trim()||'Eliab';obj.textContent='Acércate a la Primera Puerta y presiona E.';toast('La puerta te espera. Sigue el camino.');cam.position.set(player.position.x+10,7,player.position.z+15);ctl.target.set(player.position.x,2,player.position.z)};addEventListener('keydown',e=>{if(e.key.toLowerCase()!=='e'||!active)return;
 if(player.position.distanceTo(firstDoor.position)<6 && !doorOpen){
 doorOpen=true;stage='camp';doorLeaf.rotation.y=-Math.PI*.88;obj.textContent='Explora el campamento y habla con el anciano.';toast('La Primera Puerta se ha abierto.');}
 else if(player.position.distanceTo(elder.position)<5 && stage==='camp'){
