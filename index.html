@@ -277,200 +277,206 @@
 .arrival-copy button:hover{background:#3b3020}
 
 </style>
-<body>
-<section id="mainmenu" class="mainmenu">
+<style id="fast-load">
+#gameLoading{
+  position:fixed;inset:0;z-index:200;
+  display:grid;place-items:center;
+  background:radial-gradient(circle at center,#1b2630,#05080b 70%);
+  color:#f3d28d;font:18px Georgia,serif;text-align:center;
+}
+#gameLoading.hidden{display:none!important}
+#gameLoading .loadbox{padding:30px 40px}
+#gameLoading .spinner{
+  width:42px;height:42px;margin:0 auto 18px;
+  border:4px solid #ffffff30;border-top-color:#e0b75f;
+  border-radius:50%;animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head><body>
+<div id="gameLoading" class="hidden"><div class="loadbox"><div class="spinner"></div><div>Cargando el mundo...</div></div></div><section id="mainmenu" class="mainmenu">
   <div class="menu-stage">
     <img src="portada.png" class="menu-bg" alt="Crónicas de la Tierra Prometida">
-    <div class="menu-hotspots">
+    <div class="menu-hotspots" aria-label="Menú principal">
       <button id="menuPlay" class="menu-hotspot hs-play" aria-label="Jugar"></button>
       <button id="menuContinue" class="menu-hotspot hs-continue" aria-label="Continuar"></button>
       <button id="menuSettings" class="menu-hotspot hs-settings" aria-label="Ajustes"></button>
       <button id="menuHelp" class="menu-hotspot hs-help" aria-label="Ayuda"></button>
       <button id="menuExit" class="menu-hotspot hs-exit" aria-label="Salir"></button>
     </div>
-    <div class="menucontent">
-      <h1 class="menutitle">Crónicas de<br>la Tierra Prometida</h1>
-      <div class="menusub">UNA AVENTURA DE FE · VALORES · DECISIONES</div>
-      <div class="menubuttons">
-        <button class="menubtn play" id="playText">JUGAR</button>
-        <button class="menubtn" id="continueText">CONTINUAR</button>
-        <button class="menubtn" id="settingsText">AJUSTES</button>
-        <button class="menubtn" id="helpText">AYUDA</button>
-        <button class="menubtn" id="exitText">SALIR</button>
-      </div>
-      <div class="menuquote">“Esfuérzate y sé valiente; no temas ni desmayes.”<br><small>Josué 1:9</small></div>
-    </div>
-    <div class="menubadge">V1.0 · AVENTURA COMPLETA</div>
   </div>
 </section>
-
-<section id="intro" class="screen intro hidden">
- <div class="introbox"><div class="introey">CRÓNICAS DE LA TIERRA PROMETIDA</div><h1 class="introtitle">LA PRIMERA PUERTA</h1>
- <div class="gate" id="introGate"><div class="stone"></div><div class="opening"></div><div class="leaf"></div><div class="light"></div></div>
- <div class="introsub">Un camino comienza frente a una puerta. Lo que hay detrás todavía no ha sido revelado.</div>
- <button id="begin" class="introstart">COMENZAR EL CAMINO →</button></div><div class="vignette"></div>
-</section>
-
+<section id="intro" class="screen intro hidden"><div class="introbox"><div class="introey">CRÓNICAS DE LA TIERRA PROMETIDA</div><h1 class="introtitle">LA PRIMERA PUERTA</h1><div class="gate" id="introGate"><div class="stone"></div><div class="opening"></div><div class="leaf"></div><div class="light"></div></div><div class="introsub">Un camino comienza frente a una puerta. Lo que hay detrás todavía no ha sido revelado.</div><button id="begin" class="introstart">COMENZAR EL CAMINO →</button></div><div class="vignette"></div></section>
 <section id="character" class="screen char hidden">
- <div class="character-reference-ui">
-  <img class="character-reference-bg" src="creacion_personaje.png" alt="">
-  <div class="character-hotspots">
-   <input id="name" class="ref-name-hotspot" maxlength="18" value="Eliab" aria-label="Nombre" autocomplete="off">
-   <button class="ref-hotspot face-viajero active" data-face="Viajero" aria-label="Viajero"></button>
-   <button class="ref-hotspot face-pastor" data-face="Pastor" aria-label="Pastor"></button>
-   <button class="ref-hotspot face-guerrero" data-face="Guerrero" aria-label="Guerrero"></button>
-   <button class="ref-hotspot cloth-desierto active" data-clothes="Desierto" aria-label="Desierto"></button>
-   <button class="ref-hotspot cloth-campamento" data-clothes="Campamento" aria-label="Campamento"></button>
-   <button id="backToMenu" class="ref-hotspot back-hotspot" aria-label="Volver"></button>
-   <button id="enter" class="ref-hotspot enter-hotspot" aria-label="Entrar al mundo"></button>
-  </div><div id="characterStatus" class="character-status"></div>
- </div>
+  <div class="character-reference-ui">
+    <img class="character-reference-bg" src="creacion_personaje.png" alt="">
+    <div class="character-hotspots">
+      <input id="name" class="ref-name-hotspot" maxlength="18" value="Eliab" aria-label="Nombre" autocomplete="off">
+      <button class="ref-hotspot face-viajero active" data-face="Viajero" aria-label="Viajero"></button>
+      <button class="ref-hotspot face-pastor" data-face="Pastor" aria-label="Pastor"></button>
+      <button class="ref-hotspot face-guerrero" data-face="Guerrero" aria-label="Guerrero"></button>
+      <button class="ref-hotspot cloth-desierto active" data-clothes="Desierto" aria-label="Desierto"></button>
+      <button class="ref-hotspot cloth-campamento" data-clothes="Campamento" aria-label="Campamento"></button>
+      <button id="backToMenu" class="ref-hotspot back-hotspot" aria-label="Volver"></button>
+      <button id="enter" class="ref-hotspot enter-hotspot" aria-label="Entrar al mundo de la aventura"></button>
+    </div>
+    <div id="characterStatus" class="character-status"></div>
+  </div>
 </section>
+<canvas id="game"></canvas><div id="hud" class="hud hidden"><div class="status panel"><b id="hudName">Eliab</b><div class="small">Viajero del campamento</div><div class="small">VIDA</div><div class="bar"><div id="hp" class="fill hp" style="width:100%"></div></div><div class="small">AGUA</div><div class="bar"><div id="water" class="fill water" style="width:72%"></div></div><div class="small">RESISTENCIA</div><div class="bar"><div id="stam" class="fill stam" style="width:100%"></div></div></div><div class="objective panel"><div class="gold">MISIÓN PRINCIPAL</div><div id="obj">Acércate a la primera puerta y descubre cómo comienza tu camino.</div></div><div class="controls panel">WASD / Flechas · Shift correr · E interactuar</div><div class="cross"></div></div><div id="dialog" class="dialog panel hidden"><button id="close">Cerrar</button><div class="dname" id="dn"></div><div class="dtext" id="dt"></div></div><div id="toast"></div><div id="doorPrompt">E · Abrir la Primera Puerta</div>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const menu=$('mainmenu'), character=$('character'), hud=$('hud');
+  const nameInput=$('name');
 
-<canvas id="game"></canvas>
-<div id="hud" class="hud hidden">
- <div class="status panel">
-  <b id="hudName">Eliab</b><div class="small" id="hudClass">Viajero · Desierto</div>
-  <div class="small">VIDA</div><div class="bar"><div id="hp" class="fill hp" style="width:100%"></div></div>
-  <div class="small">AGUA</div><div class="bar"><div id="water" class="fill water" style="width:100%"></div></div>
-  <div class="small">RESISTENCIA</div><div class="bar"><div id="stam" class="fill stam" style="width:100%"></div></div>
-  <div class="small">FE <span id="faithVal">0</span> · BONDAD <span id="kindVal">0</span> · DISCERNIMIENTO <span id="discVal">0</span></div>
-  <div class="small">INVENTARIO: <span id="inv">0</span> provisiones · <span id="waterInv">0</span> agua</div>
- </div>
- <div class="objective panel"><div class="gold" id="chapter">CAPÍTULO I · EL COMIENZO</div><div id="obj">Habla con el anciano del campamento.</div></div>
- <div class="controls panel">WASD / Flechas · Shift correr · E interactuar · M mapa · P guardar</div><div class="cross"></div>
- <div id="minimap" class="panel" style="position:absolute;right:16px;bottom:64px;width:180px;padding:10px;font:11px Arial;display:none"></div>
-</div>
-<div id="dialog" class="dialog panel hidden"><button id="close">Cerrar</button><div class="dname" id="dn"></div><div class="dtext" id="dt"></div><div id="choices" style="margin-top:12px"></div></div>
-<div id="toast"></div><div id="doorPrompt" class="doorPrompt">E · Interactuar</div>
+  window.gameStarted=false;
+  window.selectedFace='Viajero';
+  window.selectedClothes='Desierto';
 
-<div id="arrivalCinematic" class="arrival-cinematic hidden">
- <div class="arrival-sky"></div><div class="arrival-title"><div>LA TIERRA PROMETIDA</div><small>CAPÍTULO I · EL COMIENZO DEL CAMINO</small></div>
- <div class="arrival-copy"><div class="arrival-location">EL CAMPAMENTO</div><p>Después de un largo viaje, has llegado al campamento.<br>Algo te espera más allá de las montañas.</p><button id="continueArrival">CONTINUAR <span>→</span></button></div>
-</div>
+  document.querySelectorAll('.ref-hotspot[data-face]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.ref-hotspot[data-face]').forEach(x=>x.classList.remove('active'));
+      btn.classList.add('active');
+      window.selectedFace=btn.dataset.face;
+      const status=$('characterStatus');
+      status.textContent='Camino elegido: '+window.selectedFace;
+      status.classList.add('show');
+      setTimeout(()=>status.classList.remove('show'),1200);
+    });
+  });
 
-<script type="module">
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js';
+  document.querySelectorAll('.ref-hotspot[data-clothes]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.ref-hotspot[data-clothes]').forEach(x=>x.classList.remove('active'));
+      btn.classList.add('active');
+      window.selectedClothes=btn.dataset.clothes;
+      const status=$('characterStatus');
+      status.textContent='Vestimenta: '+window.selectedClothes;
+      status.classList.add('show');
+      setTimeout(()=>status.classList.remove('show'),1200);
+    });
+  });
 
-const $=id=>document.getElementById(id);
-const menu=$('mainmenu'), intro=$('intro'), character=$('character'), hud=$('hud');
-const keys={}; addEventListener('keydown',e=>{keys[e.key.toLowerCase()]=true;if(['arrowup','arrowdown','arrowleft','arrowright',' '].includes(e.key.toLowerCase()))e.preventDefault()});
-addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
+  $('backToMenu')?.addEventListener('click',()=>{
+    character?.classList.add('hidden');
+    menu?.classList.remove('hidden');
+  });
 
-const state={
- name:'Eliab', face:'Viajero', clothes:'Desierto', hp:100, water:100, stam:100,
- faith:0, kindness:0, discernment:0, provisions:0, waterInv:0,
- quest:0, chapter:1, active:false, doorOpen:false, ending:false
-};
 
-function save(){localStorage.setItem('cronicas_tierra_prometida',JSON.stringify(state));toast('Partida guardada.');}
-function load(){try{const x=JSON.parse(localStorage.getItem('cronicas_tierra_prometida'));if(x){Object.assign(state,x);return true}}catch(e){}return false}
-function toast(t){const x=$('toast');x.textContent=t;x.style.opacity=1;clearTimeout(toast.t);toast.t=setTimeout(()=>x.style.opacity=0,1900)}
-function updateHUD(){
- $('hudName').textContent=state.name; $('hudClass').textContent=state.face+' · '+state.clothes;
- $('hp').style.width=state.hp+'%';$('water').style.width=state.water+'%';$('stam').style.width=state.stam+'%';
- $('faithVal').textContent=state.faith;$('kindVal').textContent=state.kindness;$('discVal').textContent=state.discernment;
- $('inv').textContent=state.provisions;$('waterInv').textContent=state.waterInv;
-}
-function setQuest(ch,obj){state.chapter=ch;$('chapter').textContent=ch===1?'CAPÍTULO I · EL COMIENZO':ch===2?'CAPÍTULO II · LA PRUEBA':ch===3?'CAPÍTULO III · EL VALLE':ch===4?'CAPÍTULO IV · LA DECISIÓN':'CAPÍTULO FINAL · LA PUERTA DE LA PROMESA';$('obj').textContent=obj}
-function dialog(name,text,buttons=[]){
- $('dn').textContent=name;$('dt').textContent=text;const c=$('choices');c.innerHTML='';
- buttons.forEach(b=>{const el=document.createElement('button');el.textContent=b.label;el.style.cssText='display:block;width:100%;margin:7px 0;padding:9px;background:#172432;color:#f3dfb0;border:1px solid #6d5733;border-radius:5px;cursor:pointer';el.onclick=()=>{b.action();$('dialog').classList.add('hidden')};c.appendChild(el)});
- $('dialog').classList.remove('hidden');
-}
-$('close').onclick=()=>{$('dialog').classList.add('hidden')};
+  function info(title,text){
+    if(typeof window.dialog==='function') window.dialog(title,text);
+    else alert(title+'\n\n'+text);
+  }
+  $('menuPlay')?.addEventListener('click',()=>{
+    menu?.classList.add('hidden');
+    character?.classList.remove('hidden');
+    setTimeout(()=>nameInput?.focus(),50);
+  });
+  $('menuContinue')?.addEventListener('click',()=>info('Continuar','Todavía no hay una partida guardada.'));
+  $('menuSettings')?.addEventListener('click',()=>info('Ajustes','Los ajustes estarán disponibles en una próxima versión.'));
+  $('menuHelp')?.addEventListener('click',()=>info('Ayuda','WASD o flechas: moverte.\nShift: correr.\nE: interactuar.'));
+  $('menuExit')?.addEventListener('click',()=>info('Salir','Para salir del juego, cierra esta pestaña del navegador.'));
 
-document.querySelectorAll('[data-face]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-face]').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.face=b.dataset.face;$('characterStatus').textContent='Camino elegido: '+state.face;$('characterStatus').classList.add('show');setTimeout(()=>$('characterStatus').classList.remove('show'),1000)});
-document.querySelectorAll('[data-clothes]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-clothes]').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.clothes=b.dataset.clothes});
-function showCharacter(){menu.classList.add('hidden');intro.classList.add('hidden');character.classList.remove('hidden');$('name').value=state.name}
-$('menuPlay').onclick=showCharacter;$('playText').onclick=showCharacter;
-$('menuContinue').onclick=$('continueText').onclick=()=>{if(load()){showCharacter();toast('Partida recuperada. Pulsa Entrar para continuar.')}else toast('No hay una partida guardada.')};
-$('menuHelp').onclick=$('helpText').onclick=()=>dialog('Cómo jugar','Explora libremente. Acércate a personas y lugares importantes y pulsa E. Tus decisiones aumentan Fe, Bondad o Discernimiento y cambian el final. Puedes guardar con P.');
-$('menuSettings').onclick=$('settingsText').onclick=()=>dialog('Ajustes','La aventura usa controles de teclado. El progreso se guarda localmente en este navegador.');
-$('menuExit').onclick=$('exitText').onclick=()=>toast('Puedes cerrar esta pestaña para salir.');
-$('backToMenu').onclick=()=>{character.classList.add('hidden');menu.classList.remove('hidden')};
-$('begin').onclick=()=>{ $('introGate').classList.add('open');setTimeout(()=>{intro.classList.add('hidden');showCharacter()},850) };
-
-const canvas=$('game'), renderer=new THREE.WebGLRenderer({canvas,antialias:true});
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.outputColorSpace=THREE.SRGBColorSpace;
-const scene=new THREE.Scene();scene.background=new THREE.Color(0x9bc4dc);scene.fog=new THREE.Fog(0x9bc4dc,55,240);
-const cam=new THREE.PerspectiveCamera(58,innerWidth/innerHeight,.1,500);cam.position.set(12,9,18);
-const light=new THREE.HemisphereLight(0xffe2ad,0x52645d,2.2);scene.add(light);
-const sun=new THREE.DirectionalLight(0xffe0aa,3);sun.position.set(-35,55,20);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);scene.add(sun);
-const ground=new THREE.Mesh(new THREE.PlaneGeometry(260,260),new THREE.MeshStandardMaterial({color:0xc89a60,roughness:1}));ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;scene.add(ground);
-function mat(c){return new THREE.MeshStandardMaterial({color:c,roughness:.9})}
-for(let i=0;i<70;i++){const m=new THREE.Mesh(new THREE.SphereGeometry(THREE.MathUtils.randFloat(1.5,6),10,7),mat(0xb5824e));m.scale.y=.3;m.position.set((Math.random()-.5)*220,.15,(Math.random()-.5)*220);scene.add(m)}
-function tree(x,z,k=1){const t=new THREE.Mesh(new THREE.CylinderGeometry(.35,.55,4*k,8),mat(0x624029));t.position.set(x,2*k,z);const q=new THREE.Mesh(new THREE.SphereGeometry(2.2*k,10,8),mat(0x47703e));q.position.set(x,5*k,z);q.scale.y=.8;t.castShadow=q.castShadow=true;scene.add(t,q)}
-for(let i=0;i<35;i++)tree((Math.random()-.5)*120,(Math.random()-.5)*120,.5+Math.random()*.8);
-
-const camp=new THREE.Group();camp.position.set(-25,0,-8);scene.add(camp);
-for(let i=0;i<11;i++){let a=i*Math.PI*2/11,t=new THREE.Mesh(new THREE.ConeGeometry(3.2,5.5,4),mat(0x8d5b39));t.position.set(Math.cos(a)*12,2.75,Math.sin(a)*8);camp.add(t)}
-const fire=new THREE.Mesh(new THREE.SphereGeometry(1.3,12,8),new THREE.MeshStandardMaterial({color:0xffa52f,emissive:0xff5a00,emissiveIntensity:2}));fire.position.set(0,1,0);camp.add(fire);const fireLight=new THREE.PointLight(0xff8a2a,18,20);fireLight.position.set(0,3,0);camp.add(fireLight);
-
-function makeDoor(x,z){const g=new THREE.Group();g.position.set(x,0,z);scene.add(g);const stone=mat(0x76624a),wood=mat(0x5a381e),gold=mat(0xc89a52);let a=new THREE.Mesh(new THREE.BoxGeometry(9,1.6,1.6),stone);a.position.y=8.4;g.add(a);for(const sx of [-3.7,3.7]){let p=new THREE.Mesh(new THREE.BoxGeometry(1.5,8,1.6),stone);p.position.set(sx,4,0);g.add(p)}let leaf=new THREE.Group();leaf.position.x=-3.05;g.add(leaf);let lm=new THREE.Mesh(new THREE.BoxGeometry(6.1,7.2,.55),wood);lm.position.set(3.05,3.6,0);leaf.add(lm);for(let y=1.2;y<7;y+=1.9){let band=new THREE.Mesh(new THREE.BoxGeometry(5.5,.18,.65),gold);band.position.set(3.05,y,0);leaf.add(band)}let ring=new THREE.Mesh(new THREE.TorusGeometry(1,.08,8,32),gold);ring.position.set(3.05,3.6,.35);leaf.add(ring);return {g,leaf}}
-const door1=makeDoor(-17,-8),door2=makeDoor(83,-52), door3=makeDoor(84,52);
-
-const oasis=new THREE.Group();oasis.position.set(48,0,-42);scene.add(oasis);let pool=new THREE.Mesh(new THREE.CylinderGeometry(10,10,.35,48),new THREE.MeshStandardMaterial({color:0x3e9db5,roughness:.15,metalness:.1}));pool.position.y=.18;oasis.add(pool);for(let i=0;i<9;i++)tree(48+Math.cos(i)*13,-42+Math.sin(i)*11,.55+Math.random()*.3);
-const ruins=new THREE.Group();ruins.position.set(62,0,30);scene.add(ruins);for(let i=0;i<9;i++){let q=new THREE.Mesh(new THREE.BoxGeometry(2.4,8+Math.random()*5,2.4),mat(0x8d755a));q.position.set((i-4)*4,4,(i%2)*5);q.castShadow=true;ruins.add(q)}
-const bridge=new THREE.Group();bridge.position.set(84,0,8);scene.add(bridge);for(let i=0;i<12;i++){let p=new THREE.Mesh(new THREE.BoxGeometry(4,.8,3),mat(0x72583d));p.position.set(i*4-22,.4,0);bridge.add(p)}
-function npc(x,z,color=0xddd0b2){const g=new THREE.Group();g.position.set(x,0,z);let b=new THREE.Mesh(new THREE.CapsuleGeometry(.7,1.6,5,10),mat(color));b.position.y=1.9;let h=new THREE.Mesh(new THREE.SphereGeometry(.68,16,12),mat(0x875739));h.position.y=3.8;g.add(b,h);scene.add(g);return g}
-const elder=npc(-18,-8), traveler=npc(45,-37,0x9c8260), stranger=npc(72,28,0x4c5c6a), shepherd=npc(70,-25,0xb7a78d);
-
-const player=new THREE.Group();player.position.set(-5,0,5);scene.add(player);const skin=mat(0x875739),cloth=mat(0xb8a37f),dark=mat(0x3b291d);let body=new THREE.Mesh(new THREE.CapsuleGeometry(.75,1.7,5,10),cloth);body.position.y=2;let head=new THREE.Mesh(new THREE.SphereGeometry(.7,16,12),skin);head.position.y=4;let hair=new THREE.Mesh(new THREE.SphereGeometry(.74,16,10,0,Math.PI*2,0,Math.PI*.55),dark);hair.position.y=4.25;player.add(body,head,hair);
-
-const sites=[{name:'Campamento',pos:camp.position},{name:'Manantial',pos:oasis.position},{name:'Ruinas',pos:ruins.position},{name:'Puente de la Decisión',pos:bridge.position},{name:'Puerta de la Promesa',pos:door3.g.position}];
-function distanceTo(o){return player.position.distanceTo(o.position)}
-function interaction(){
- if(distanceTo(door1.g)<7&&!state.doorOpen){state.doorOpen=true;door1.leaf.rotation.y=-Math.PI*.88;setQuest(1,'Habla con el anciano del campamento.');toast('La Primera Puerta se ha abierto.');return}
- if(distanceTo(elder)<6&&state.quest===1){dialog('Anciano del campamento','“No basta con llegar lejos; importa cómo caminas. Toma provisiones y busca el manantial. Allí aprenderás que lo recibido también puede compartirse.”',[{label:'Escuchar con fe',action:()=>{state.faith+=1;state.provisions=2;setQuest(2,'Busca el manantial y lleva agua al campamento.')}},{label:'Preguntar con discernimiento',action:()=>{state.discernment+=1;state.provisions=2;setQuest(2,'Busca el manantial y lleva agua al campamento.')}}]);return}
- if(distanceTo(oasis)<11&&state.quest===2){state.waterInv=2;state.water=100;setQuest(3,'Regresa al campamento y decide qué hacer con tus provisiones.');toast('Has llenado tus recipientes.');return}
- if(distanceTo(camp)<18&&state.quest===3){dialog('Anciano del campamento','Al volver encuentras a una familia que también necesita agua.',[{label:'Compartir el agua',action:()=>{state.kindness+=2;state.waterInv=Math.max(0,state.waterInv-1);setQuest(4,'Ve hacia las ruinas. Una prueba te espera allí.')}},{label:'Guardar el agua',action:()=>{state.discernment+=1;setQuest(4,'Ve hacia las ruinas. Una prueba te espera allí.')}}]);return}
- if(distanceTo(ruins)<12&&state.quest===4){dialog('Las ruinas','Encuentras una antigua inscripción: “La fuerza sin sabiduría puede perder el camino”. Una senda segura y otra rápida aparecen ante ti.',[{label:'Seguir la senda segura',action:()=>{state.discernment+=2;setQuest(5,'Busca al viajero cerca del valle.')}},{label:'Tomar la senda rápida',action:()=>{state.faith+=1;state.hp=Math.max(65,state.hp-20);setQuest(5,'Busca al viajero cerca del valle.')}}]);return}
- if(distanceTo(traveler)<7&&state.quest===5){dialog('Viajero herido','“No puedo continuar. ¿Me ayudarás?”',[{label:'Ayudarlo',action:()=>{state.kindness+=2;state.provisions=Math.max(0,state.provisions-1);setQuest(6,'Cruza el puente y enfrenta la decisión final.')}},{label:'Continuar solo',action:()=>{state.discernment+=1;setQuest(6,'Cruza el puente y enfrenta la decisión final.')}}]);return}
- if(distanceTo(bridge)<10&&state.quest===6){dialog('Puente de la Decisión','Del otro lado hay una recompensa, pero alguien pide ayuda. ¿Qué guía tus pasos?',[{label:'Fe: avanzar confiando',action:()=>{state.faith+=2;setQuest(7,'Llega a la Puerta de la Promesa.')}},{label:'Bondad: volver por quien necesita ayuda',action:()=>{state.kindness+=2;setQuest(7,'Llega a la Puerta de la Promesa.')}},{label:'Discernimiento: observar antes de actuar',action:()=>{state.discernment+=2;setQuest(7,'Llega a la Puerta de la Promesa.')}}]);return}
- if(distanceTo(door3.g)<9&&state.quest===7){finishGame();return}
- toast('Acércate a una persona o lugar importante.');
-}
-function finishGame(){
- if(state.ending)return;state.ending=true;
- const total=state.faith+state.kindness+state.discernment;let title,text;
- if(state.kindness>=state.faith&&state.kindness>=state.discernment){title='EL CAMINO DEL CORAZÓN';text='Has descubierto que la promesa no se trata solo de conquistar una tierra, sino de servir a quienes caminan contigo.'}
- else if(state.discernment>=state.faith){title='EL CAMINO DE LA SABIDURÍA';text='Has aprendido a mirar más allá de lo evidente. Tus decisiones muestran que la valentía necesita discernimiento.'}
- else {title='EL CAMINO DE LA FE';text='Has avanzado sin ver todo el camino. Tu fe te permitió cruzar puertas que todavía no comprendías.'}
- setQuest(8,'La aventura continúa…');dialog(title,text+'\\n\\nFE '+state.faith+' · BONDAD '+state.kindness+' · DISCERNIMIENTO '+state.discernment+'\\n\\nHas completado el Capítulo I. Este final queda guardado como tu legado.',[{label:'Guardar legado',action:()=>{save();state.active=false;toast('Legado guardado. Puedes volver a jugar.')}}]);
-}
-
-$('enter').onclick=()=>{
- state.name=($('name').value||'').trim()||'Viajero';state.active=true;state.ending=false;
- if(state.quest===0)state.quest=1;updateHUD();character.classList.add('hidden');hud.classList.remove('hidden');
- $('arrivalCinematic').classList.remove('hidden');setTimeout(()=>{},30);save();
-};
-$('continueArrival').onclick=()=>{$('arrivalCinematic').classList.add('hidden');setQuest(state.chapter,state.chapter===1?'Habla con el anciano del campamento.':$('obj').textContent);toast('Tu aventura comienza.');};
-
-addEventListener('keydown',e=>{
- if(e.key.toLowerCase()==='e'&&state.active&&!e.repeat)interaction();
- if(e.key.toLowerCase()==='p'&&state.active&&!e.repeat)save();
- if(e.key.toLowerCase()==='m'&&state.active&&!e.repeat){const m=$('minimap');m.style.display=m.style.display==='none'?'block':'none';}
-});
-let last=performance.now(), lastSave=performance.now();
-function loop(now){requestAnimationFrame(loop);const dt=Math.min(.04,(now-last)/1000);last=now;
- if(state.active&&!state.ending){
-  let x=(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0),z=(keys.s||keys.arrowdown?1:0)-(keys.w||keys.arrowup?1:0);
-  if(x||z){const l=Math.hypot(x,z);x/=l;z/=l;const run=keys.shift&&state.stam>2,v=run?11:7;player.position.x+=x*v*dt;player.position.z+=z*v*dt;player.rotation.y=Math.atan2(x,z);state.stam=Math.max(0,state.stam-(run?24:5)*dt)}else state.stam=Math.min(100,state.stam+16*dt);
-  state.water=Math.max(0,state.water-.35*dt);if(state.water===0)state.hp=Math.max(0,state.hp-1.2*dt);
-  player.position.x=THREE.MathUtils.clamp(player.position.x,-115,115);player.position.z=THREE.MathUtils.clamp(player.position.z,-115,115);
-  const target=new THREE.Vector3(player.position.x+13,9,player.position.z+18);cam.position.lerp(target,.08);cam.lookAt(player.position.x,2,player.position.z);
-  updateHUD();
-  if(now-lastSave>15000){localStorage.setItem('cronicas_tierra_prometida',JSON.stringify(state));lastSave=now}
-  const near=[door1.g,elder,oasis,ruins,traveler,bridge,door3.g].some(o=>distanceTo(o)<8);$('doorPrompt').style.opacity=near?1:0;
-  if(near)$('doorPrompt').textContent='E · Interactuar';
- }
- fire.scale.y=1+Math.sin(now*.008)*.15;fireLight.intensity=15+Math.sin(now*.008)*4;
- const m=$('minimap');if(m.style.display!=='none'){m.innerHTML='<b>MAPA</b><br>● Tú<br>◆ Campamento<br>◆ Manantial<br>◆ Ruinas<br>◆ Puente<br>◆ Puerta final';}
- renderer.render(scene,cam);
-}
-requestAnimationFrame(loop);
-addEventListener('resize',()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
-updateHUD();
+  $('enter')?.addEventListener('click',()=>{
+    window.playerDisplayName=(nameInput?.value||'').trim()||'Viajero';
+    window.playerFace=window.selectedFace||'Viajero'; window.playerClothes=window.selectedClothes||'Desierto';
+    window.gameStarted=true;
+    window.dispatchEvent(new Event('gameStarted'));
+    const cinematic=document.getElementById('arrivalCinematic');
+    if(cinematic){
+      cinematic.classList.remove('hidden');
+      setTimeout(()=>cinematic.classList.add('show'),30);
+    }
+    character?.classList.add('hidden');
+    hud?.classList.remove('hidden');
+    const hn=$('hudName'); if(hn) hn.textContent=window.playerDisplayName;
+  });
+})();
 </script>
+
+<script type="module">import*as THREE from'https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js';import{OrbitControls}from'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/controls/OrbitControls.js';const c=document.querySelector('#game'),r=new THREE.WebGLRenderer({canvas:c,antialias:false,powerPreference:'high-performance'});r.setPixelRatio(Math.min(devicePixelRatio||1,1.35));r.setSize(innerWidth,innerHeight);r.shadowMap.enabled=false;r.outputColorSpace=THREE.SRGBColorSpace;const s=new THREE.Scene();s.background=new THREE.Color(0x9bc4dc);s.fog=new THREE.Fog(0x9bc4dc,55,240);const cam=new THREE.PerspectiveCamera(58,innerWidth/innerHeight,.1,500);cam.position.set(16,10,22);const ctl=new OrbitControls(cam,c);ctl.enablePan=false;ctl.minDistance=7;ctl.maxDistance=30;ctl.maxPolarAngle=Math.PI/2.08;const h=new THREE.HemisphereLight(0xffe2ad,0x52645d,2),sun=new THREE.DirectionalLight(0xffe0aa,3);sun.position.set(-35,55,20);sun.castShadow=true;sun.shadow.mapSize.set(512,512);s.add(h,sun);const ground=new THREE.Mesh(new THREE.PlaneGeometry(260,260),new THREE.MeshStandardMaterial({color:0xc89a60,roughness:1}));ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;s.add(ground);for(let i=0;i<28;i++){let m=new THREE.Mesh(new THREE.SphereGeometry(THREE.MathUtils.randFloat(2,7),8,6),new THREE.MeshStandardMaterial({color:0xb5824e,roughness:1}));m.scale.y=.35;m.position.set((Math.random()-.5)*220,.2,(Math.random()-.5)*220);s.add(m)}for(let i=0;i<9;i++){let m=new THREE.Mesh(new THREE.ConeGeometry(THREE.MathUtils.randFloat(7,15),THREE.MathUtils.randFloat(14,28),6),new THREE.MeshStandardMaterial({color:0x705944}));m.position.set(-95+i*14,7,-75-(i%3)*10);m.rotation.y=Math.random();m.castShadow=true;s.add(m)}function tree(x,z,k=1){let t=new THREE.Mesh(new THREE.CylinderGeometry(.35,.5,4*k,6),new THREE.MeshStandardMaterial({color:0x624029}));t.position.set(x,2*k,z);let q=new THREE.Mesh(new THREE.SphereGeometry(2.2*k,8,6),new THREE.MeshStandardMaterial({color:0x47703e}));q.position.set(x,5*k,z);q.scale.y=.8;t.castShadow=q.castShadow=true;s.add(t,q)}for(let i=0;i<14;i++)tree((Math.random()-.5)*110,(Math.random()-.5)*110,.6+Math.random()*.6);
+const camp=new THREE.Group();camp.position.set(-25,0,-8);s.add(camp);for(let i=0;i<9;i++){let a=i*Math.PI*2/9,t=new THREE.Mesh(new THREE.ConeGeometry(3.2,5.5,4),new THREE.MeshStandardMaterial({color:0x8d5b39}));t.position.set(Math.cos(a)*11,2.75,Math.sin(a)*7);camp.add(t)}let fire=new THREE.Mesh(new THREE.SphereGeometry(1.3,12,8),new THREE.MeshStandardMaterial({color:0xffa52f,emissive:0xff5a00,emissiveIntensity:2}));camp.add(fire);let fl=new THREE.PointLight(0xff8a2a,18,18);fl.position.y=3;camp.add(fl);
+const firstDoor=new THREE.Group();firstDoor.position.set(-17,0,-8);s.add(firstDoor);
+const stoneMat=new THREE.MeshStandardMaterial({color:0x76624a,roughness:.9}),woodMat=new THREE.MeshStandardMaterial({color:0x5a381e,roughness:.75}),goldMat=new THREE.MeshStandardMaterial({color:0xc89a52,metalness:.35,roughness:.45});
+const lintel=new THREE.Mesh(new THREE.BoxGeometry(8,1.6,1.5),stoneMat);lintel.position.y=8.4;firstDoor.add(lintel);
+const lc=new THREE.Mesh(new THREE.BoxGeometry(1.5,8,1.5),stoneMat);lc.position.set(-3.25,4,0);firstDoor.add(lc);
+const rc=new THREE.Mesh(new THREE.BoxGeometry(1.5,8,1.5),stoneMat);rc.position.set(3.25,4,0);firstDoor.add(rc);
+const opening=new THREE.Mesh(new THREE.PlaneGeometry(5.1,7.2),new THREE.MeshBasicMaterial({color:0x100b07}));opening.position.set(0,4.05,.77);firstDoor.add(opening);
+const doorLeaf=new THREE.Group();doorLeaf.position.set(-2.55,0,.9);firstDoor.add(doorLeaf);
+const leafMesh=new THREE.Mesh(new THREE.BoxGeometry(5.1,7.2,.5),woodMat);leafMesh.position.set(2.55,3.6,0);doorLeaf.add(leafMesh);
+for(let y=1.4;y<7;y+=2){let band=new THREE.Mesh(new THREE.BoxGeometry(4.6,.18,.62),goldMat);band.position.set(2.55,y,0);doorLeaf.add(band)}
+const doorMark=new THREE.Mesh(new THREE.TorusGeometry(1.0,.08,8,32),goldMat);doorMark.position.set(2.55,3.6,.35);doorLeaf.add(doorMark);
+let doorOpen=false;
+
+const oasis=new THREE.Group();oasis.position.set(48,0,-42);s.add(oasis);let ow=new THREE.Mesh(new THREE.CylinderGeometry(10,10,.35,48),new THREE.MeshStandardMaterial({color:0x3e9db5,roughness:.15}));ow.position.y=.18;oasis.add(ow);for(let i=0;i<7;i++)tree(48+Math.cos(i)*13,-42+Math.sin(i)*11,.65);
+const ruins=new THREE.Group();ruins.position.set(62,0,30);s.add(ruins);for(let i=0;i<7;i++){let q=new THREE.Mesh(new THREE.BoxGeometry(2.4,8+Math.random()*5,2.4),new THREE.MeshStandardMaterial({color:0x8d755a}));q.position.set((i-3)*4,4,(i%2)*5);ruins.add(q)}
+const player=new THREE.Group();player.position.set(-17,0,2);s.add(player);const skin=new THREE.MeshStandardMaterial({color:0x875739}),cloth=new THREE.MeshStandardMaterial({color:0xb8a37f}),dark=new THREE.MeshStandardMaterial({color:0x3b291d});let b=new THREE.Mesh(new THREE.CapsuleGeometry(.75,1.7,5,10),cloth);b.position.y=2;let hd=new THREE.Mesh(new THREE.SphereGeometry(.7,16,12),skin);hd.position.y=4;let hair=new THREE.Mesh(new THREE.SphereGeometry(.74,16,10,0,Math.PI*2,0,Math.PI*.55),dark);hair.position.y=4.25;player.add(b,hd,hair);
+const elder=new THREE.Group();elder.position.set(-18,0,-8);s.add(elder);let eb=new THREE.Mesh(new THREE.CapsuleGeometry(.7,1.6,5,10),new THREE.MeshStandardMaterial({color:0xddd0b2}));eb.position.y=1.9;let eh=new THREE.Mesh(new THREE.SphereGeometry(.68,16,12),skin);eh.position.y=3.8;elder.add(eb,eh);let mark=new THREE.Mesh(new THREE.TorusGeometry(1.1,.12,8,32),new THREE.MeshBasicMaterial({color:0xffd05a}));mark.rotation.x=Math.PI/2;elder.add(mark);
+const keys={};addEventListener('keydown',e=>keys[e.key.toLowerCase()]=true);addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);let active=false,stam=100,wat=72,hp=100,last=performance.now(),stage='door';function toast(t){let x=document.querySelector('#toast');x.textContent=t;x.style.opacity=1;clearTimeout(toast.t);toast.t=setTimeout(()=>x.style.opacity=0,1700)}function dialog(n,t){dn.textContent=n;dt.textContent=t;document.querySelector('#dialog').classList.remove('hidden')}close.onclick=()=>document.querySelector('#dialog').classList.add('hidden');
+begin.onclick=()=>{introGate.classList.add('open');setTimeout(()=>{intro.classList.add('hidden');character.classList.remove('hidden');},850)};
+const mainmenu=document.querySelector('#mainmenu');
+const menuPlay=document.querySelector('#menuPlay');
+menuPlay.onclick=()=>{mainmenu.classList.add('hidden');character.classList.remove('hidden');};
+document.querySelector('#menuSettings').onclick=()=>toast('Ajustes estarán disponibles en una próxima versión.');
+document.querySelector('#menuHelp').onclick=()=>dialog('Ayuda','En la aventura podrás moverte con WASD o las flechas, correr con Shift e interactuar con E. Comienza creando tu personaje.');
+document.querySelectorAll('.choices').forEach(x=>x.onclick=e=>{if(e.target.classList.contains('choice')){x.querySelectorAll('.choice').forEach(y=>y.classList.remove('active'));e.target.classList.add('active')}});window.addEventListener('gameStarted',async()=>{
+  const loading=document.getElementById('gameLoading');
+  if(loading) loading.classList.remove('hidden');
+  try{
+    await loadThree();
+    active=true;
+  character.classList.add('hidden');
+  hud.classList.remove('hidden');
+  hudName.textContent=window.playerDisplayName||name.value.trim()||'Viajero';
+  obj.textContent='Habla con el anciano del campamento.';
+  cam.position.set(player.position.x+10,7,player.position.z+15);
+  ctl.target.set(player.position.x,2,player.position.z);
+});
+addEventListener('keydown',e=>{if(e.key.toLowerCase()!=='e'||!active)return;
+if(player.position.distanceTo(firstDoor.position)<6 && !doorOpen){
+doorOpen=true;stage='camp';doorLeaf.rotation.y=-Math.PI*.88;obj.textContent='Explora el campamento y habla con el anciano.';toast('La Primera Puerta se ha abierto.');}
+else if(player.position.distanceTo(elder.position)<5 && stage==='camp'){
+dialog('Anciano del campamento','“Has cruzado la primera puerta. Ahora reúne provisiones y busca el manantial. Hay un propósito en el camino, aunque todavía no puedas verlo.”');obj.textContent='Encuentra el oasis y explora sus alrededores.';stage='oasis';}
+else if(player.position.distanceTo(oasis.position)<9 && stage==='oasis'){
+wat=Math.min(100,wat+35);toast('Has llenado tu odre en el manantial.');obj.textContent='Regresa al campamento con agua.';stage='return';}
+else if(player.position.distanceTo(camp.position)<16 && stage==='return'){
+dialog('Misión completada','El agua vuelve al campamento. A lo lejos, una nueva estructura espera más allá de las ruinas. El camino continúa.');obj.textContent='La próxima puerta aún no ha sido revelada.';stage='done';}
+else toast('Acércate a un lugar importante.');
+});
+function loop(n){
+  requestAnimationFrame(loop);
+  if(!threeReady) return;
+  let dt=Math.min(.04,(n-last)/1000);
+  last=n;
+  if(active){let x=(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0),z=(keys.s||keys.arrowdown?1:0)-(keys.w||keys.arrowup?1:0);if(x||z){let l=Math.hypot(x,z);x/=l;z/=l;let run=keys.shift&&stam>2,v=run?11:7;player.position.x+=x*v*dt;player.position.z+=z*v*dt;player.rotation.y=Math.atan2(x,z);stam=Math.max(0,stam-(run?24:5)*dt)}else stam=Math.min(100,stam+16*dt);wat=Math.max(0,wat-.5*dt);if(wat===0)hp=Math.max(0,hp-1.2*dt);player.position.x=THREE.MathUtils.clamp(player.position.x,-110,110);player.position.z=THREE.MathUtils.clamp(player.position.z,-110,110);cam.position.lerp(new THREE.Vector3(player.position.x+13,9,player.position.z+18),.08);ctl.target.lerp(new THREE.Vector3(player.position.x,2,player.position.z),.12);document.querySelector('#hp').style.width=hp+'%';document.querySelector('#water').style.width=wat+'%';document.querySelector('#stam').style.width=stam+'%'}fire.scale.y=1+Math.sin(n*.008)*.15;fl.intensity=15+Math.sin(n*.008)*4;mark.scale.setScalar(1+Math.sin(n*.004)*.12);const nearDoor=active&&!doorOpen&&player.position.distanceTo(firstDoor.position)<6;doorPrompt.style.opacity=nearDoor?1:0;if(nearDoor)doorPrompt.textContent='E · Abrir la Primera Puerta';r.render(s,cam)}loop(performance.now());addEventListener('resize',()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();r.setSize(innerWidth,innerHeight)})</script>
+<div id="arrivalCinematic" class="arrival-cinematic hidden">
+  <div class="arrival-sky"></div>
+  <div class="arrival-title">
+    <div>LA TIERRA PROMETIDA</div>
+    <small>CAPÍTULO I · EL COMIENZO DEL CAMINO</small>
+  </div>
+  <div class="arrival-copy">
+    <div class="arrival-location">EL CAMPAMENTO</div>
+    <p>Después de un largo viaje, has llegado al campamento.<br>Algo te espera más allá de las montañas.</p>
+    <button id="continueArrival">CONTINUAR <span>→</span></button>
+  </div>
+</div>
+
+
+<script>
+(function(){
+  const c=document.getElementById('arrivalCinematic');
+  const b=document.getElementById('continueArrival');
+  if(!c||!b)return;
+  b.addEventListener('click',()=>{
+    c.classList.add('hidden');
+    const hud=document.getElementById('hud');
+    if(hud)hud.classList.remove('hidden');
+    const obj=document.getElementById('obj');
+    if(obj)obj.textContent='Habla con el anciano del campamento.';
+  });
+})();
+</script>
+
 </body></html>
