@@ -1,1640 +1,476 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crónicas de la Tierra Prometida V0.5</title>
-<style>
-@import url('https://cdn.jsdelivr.net/fontsource/fonts/cinzel@latest/latin-400-normal.css');
-@import url('https://cdn.jsdelivr.net/fontsource/fonts/cinzel@latest/latin-700-normal.css');
-@import url('https://cdn.jsdelivr.net/fontsource/fonts/lora@latest/latin-400-normal.css');
-@import url('https://cdn.jsdelivr.net/fontsource/fonts/lora@latest/latin-400-italic.css');
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Crónicas de la Tierra Prometida V0.3.8 — La Primera Puerta</title><style>*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;background:#07111c;color:#f4ead7;font-family:Georgia,serif}button,input{font:inherit}.screen{position:fixed;inset:0;z-index:5}.char{display:grid;place-items:center;background:radial-gradient(circle at 70% 40%,#765532,#0a1119 65%)}.box{width:min(1000px,94vw);height:min(650px,92vh);display:grid;grid-template-columns:1fr 1fr;background:#07111df5;border:1px solid #d8ad5570;border-radius:18px;overflow:hidden;box-shadow:0 25px 80px #000b}.preview{display:grid;place-items:center;background:linear-gradient(#c9a36d,#6f5138)}.hero{width:170px;height:350px;position:relative;filter:drop-shadow(0 15px 10px #0007)}.head{position:absolute;left:53px;top:20px;width:65px;height:72px;border-radius:50%;background:#8b5a3c}.hair{position:absolute;left:48px;top:12px;width:75px;height:58px;border-radius:50%;background:#251711}.body{position:absolute;left:30px;top:88px;width:112px;height:185px;background:#b8a37f;clip-path:polygon(18% 0,82% 0,100% 100%,0 100%)}.belt{position:absolute;left:38px;top:185px;width:96px;height:14px;background:#5a3b25}.leg{position:absolute;top:260px;width:34px;height:82px;background:#493321}.l{left:42px}.r{left:96px}.sand{position:absolute;top:337px;width:45px;height:12px;background:#24160e;border-radius:8px}.sl{left:34px}.sr{left:91px}.info{padding:42px;display:flex;flex-direction:column}.ey{font:12px Arial;letter-spacing:3px;color:#d9b96e}.title{font-size:38px;color:#f0d18a;margin:8px 0 25px}.lab{font:12px Arial;color:#aeb7bf;margin:12px 0 6px}.input{width:100%;padding:12px;background:#101d29;border:1px solid #50606e;border-radius:7px;color:white}.choices{display:flex;gap:8px;flex-wrap:wrap}.choice{width:auto;margin:0;padding:9px 12px;background:#101d29;border:1px solid #40515f;color:#eee;border-radius:6px}.choice.active{border-color:#e0b75f}.quote{font:italic 13px/1.5 Arial;color:#bdc4c8;margin-top:22px}.start{margin-top:auto;width:100%;padding:14px;background:linear-gradient(#e0b75f,#a97624);border:0;border-radius:7px;font-weight:bold;cursor:pointer}#game{position:fixed;inset:0}.hud{position:fixed;inset:0;z-index:3;pointer-events:none}.panel{background:#06111ddd;border:1px solid #c99d4b66;border-radius:10px;box-shadow:0 10px 30px #0008;backdrop-filter:blur(6px)}.status{position:absolute;left:16px;top:16px;width:250px;padding:12px}.small{font:11px Arial;color:#bac1c6}.bar{height:8px;background:#18222b;border-radius:8px;overflow:hidden;margin:4px 0 6px}.fill{height:100%}.hp{background:#bd4a49}.water{background:#4799d1}.stam{background:#9caf50}.objective{position:absolute;right:16px;top:16px;width:310px;padding:13px;font:13px Arial}.gold{color:#f3c96a;font-weight:bold}.controls{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);padding:9px 15px;font:12px Arial}.cross{position:absolute;left:50%;top:50%;width:12px;height:12px;transform:translate(-50%,-50%);opacity:.5}.cross:before,.cross:after{content:"";position:absolute;background:#fff}.cross:before{width:12px;height:1px;top:6px}.cross:after{height:12px;width:1px;left:6px}.hidden{display:none!important}#toast{position:fixed;left:50%;top:72%;transform:translate(-50%,-50%);z-index:9;background:#050b12ee;border:1px solid #d8ad55;padding:11px 18px;border-radius:8px;font:13px Arial;opacity:0;transition:.25s}.dialog{position:fixed;left:50%;bottom:10%;transform:translateX(-50%);z-index:8;width:min(650px,90vw);padding:18px}.dialog button{float:right;background:#162432;color:white;border:1px solid #52606d;border-radius:5px;padding:6px 12px}.dname{color:#f3c96a;font-weight:bold;margin-bottom:7px}.dtext{font:15px/1.5 Arial}@media(max-width:800px){.box{grid-template-columns:1fr}.preview{display:none}.info{padding:25px}.title{font-size:30px}.objective{width:240px}.status{width:205px}}
+.intro{display:grid;place-items:center;background:radial-gradient(circle at 50% 42%,#5e4a32 0,#17120d 45%,#05070a 100%);overflow:hidden}
+.intro:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,#0009),radial-gradient(ellipse at 50% 85%,#d99a3b22,transparent 45%);pointer-events:none}
+.introbox{position:relative;width:min(1180px,94vw);height:min(720px,92vh);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.introey{font:11px Arial;letter-spacing:5px;color:#d9b96e;margin-bottom:12px}
+.introtitle{font-size:clamp(32px,5vw,68px);letter-spacing:2px;color:#f3d28e;text-shadow:0 5px 25px #000;margin:0}
+.introsub{font:15px/1.6 Arial;color:#d7d0c5;max-width:620px;margin:14px auto 28px}
+.gate{position:relative;width:min(310px,48vw);height:min(410px,52vh);min-height:260px;margin:4px auto 26px;filter:drop-shadow(0 25px 35px #000c)}
+.gate .stone{position:absolute;inset:0 0 0;border:18px solid #79634a;border-bottom:0;border-radius:155px 155px 0 0;background:linear-gradient(90deg,#382c20,#7e684e 50%,#382c20);box-shadow:inset 0 0 0 5px #b29268, inset 0 0 55px #17100a}
+.gate .opening{position:absolute;left:43px;right:43px;top:43px;bottom:0;background:radial-gradient(ellipse at 50% 72%,#ffd47a 0,#9b5b20 25%,#120c08 70%);border-radius:112px 112px 0 0;overflow:hidden}
+.gate .leaf{position:absolute;left:51px;right:51px;top:51px;bottom:0;border:5px solid #5a3a20;background:linear-gradient(90deg,#2c1a10,#76502e 48%,#2c1a10);transform-origin:left center;transition:transform 1.4s cubic-bezier(.2,.7,.2,1),opacity 1.2s}
+.gate .leaf:after{content:"";position:absolute;inset:18px;border:2px solid #c59a5d55;border-radius:5px}
+.gate.open .leaf{transform:perspective(600px) rotateY(-78deg);opacity:.18}
+.gate .light{position:absolute;left:50%;bottom:22px;width:16px;height:16px;border-radius:50%;background:#ffe4a0;box-shadow:0 0 50px 25px #ffb13b99;transform:translateX(-50%);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.55;transform:translateX(-50%) scale(1.15)}}
+.introstart{padding:14px 34px;background:linear-gradient(#e0b75f,#a97624);border:1px solid #f2d58b88;border-radius:7px;font-weight:bold;cursor:pointer;box-shadow:0 8px 25px #0008}
+.vignette{position:absolute;inset:0;box-shadow:inset 0 0 140px #000;pointer-events:none}
+.doorworld{position:absolute;left:0;top:0;z-index:2;pointer-events:none}
+.doorPrompt{position:fixed;left:50%;bottom:20%;transform:translateX(-50%);z-index:7;background:#050b12e8;border:1px solid #d8ad55;padding:10px 18px;border-radius:8px;font:13px Arial;opacity:0;transition:.2s}
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { overflow: hidden; background: #000; font-family: 'Lora', serif; color: #e8d9b0; user-select: none; }
-#app { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; }
+.mainmenu{
+  position:fixed; inset:0; z-index:30; display:grid; place-items:center;
+  background:#050505; overflow:hidden;
+}
+.mainmenu.hidden{display:none!important}
+.menu-stage{
+  position:relative; width:min(100vw,150vh); aspect-ratio:1536/1024;
+  max-width:100vw; max-height:100vh; overflow:hidden;
+}
+.menu-bg{
+  position:absolute; inset:0; width:100%; height:100%; display:block;
+  object-fit:contain; user-select:none; -webkit-user-drag:none;
+}
+.menu-hotspots{position:absolute; inset:0}
+.menu-hotspot{
+  position:absolute; display:block; padding:0; margin:0;
+  border:1px solid transparent; background:transparent; border-radius:12px;
+  cursor:pointer; transition:.15s ease;
+}
+.menu-hotspot:hover,.menu-hotspot:focus-visible{
+  background:rgba(255,210,110,.09);
+  border-color:rgba(255,225,155,.30);
+  box-shadow:0 0 18px rgba(255,205,110,.18),inset 0 0 14px rgba(255,205,110,.07);
+  outline:none;
+}
+.menu-hotspot:active{background:rgba(255,210,110,.16)}
+.hs-play{left:5%;top:36.7%;width:22%;height:5.8%}
+.hs-continue{left:5%;top:43.1%;width:22%;height:5.8%}
+.hs-settings{left:5%;top:49.8%;width:22%;height:5.8%}
+.hs-help{left:5%;top:56.5%;width:22%;height:5.8%}
+.hs-exit{left:5%;top:63.2%;width:22%;height:5.8%}.mainmenu:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.70) 0%,rgba(0,0,0,.38) 42%,rgba(0,0,0,.08) 72%),linear-gradient(0deg,rgba(0,0,0,.38),transparent 45%,rgba(0,0,0,.18));}.menucontent{position:relative;z-index:2;width:min(560px,46vw);min-width:300px;margin-left:5vw;padding-top:10vh}.menutitle{font-size:clamp(34px,5vw,72px);line-height:.88;margin:0;text-transform:uppercase;color:#f4d28b;text-shadow:0 5px 18px #000;letter-spacing:1px}.menusub{font:15px Arial;letter-spacing:3px;margin:20px 0 28px;color:#f2eee6}.menubuttons{display:flex;flex-direction:column;gap:12px;width:min(330px,80vw)}.menubtn{height:56px;border:1px solid #c99d4b;background:linear-gradient(180deg,#252525e8,#0d0d0de8);color:#eee7dc;font:700 20px Georgia;letter-spacing:2px;text-align:left;padding:0 24px;border-radius:6px;cursor:pointer;box-shadow:0 5px 18px #0008;transition:.18s}.menubtn:hover{transform:translateX(5px);background:linear-gradient(180deg,#6b4a1ee8,#19130ce8);color:#fff2c9}.menubtn.play{background:linear-gradient(180deg,#b97916f2,#5d3107f2);color:#fff0c4}.menubtn:disabled{opacity:.55;cursor:not-allowed}.menuquote{position:absolute;left:0;bottom:-170px;max-width:430px;font:italic 16px/1.45 Georgia;color:#eee9dd}.menubadge{position:fixed;right:4vw;bottom:4vh;z-index:3;border:1px solid #c99d4b99;border-radius:8px;padding:12px 22px;background:#090b0dcc;font:12px Arial;letter-spacing:1px;color:#f2d69a}@media(max-width:800px){.menucontent{width:88vw;margin-left:6vw;padding-top:7vh}.mainmenu{background-position:60% center}.menuquote{display:none}.menubadge{display:none}}
 
-.screen { position: absolute; inset: 0; display: none; }
-.screen.active { display: block; }
-
-/* ============ MAIN MENU ============ */
-#screen-menu {
-  background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.55)),
-    url('https://image.qwenlm.ai/public_source/5d442bff-2692-4500-beb4-c8365c2cc91e/106f594b2-d607-4f91-9112-a6a6fc1abc72.png') center/cover;
-  display: flex; flex-direction: column;
+/* ===== V0.3.6 · CREACIÓN CINEMATOGRÁFICA ===== */
+.char{
+  display:block;
+  background:#0a0b0d;
+  color:#f3ead8;
+  overflow:hidden;
 }
-#screen-menu.active { display: flex; }
-
-.menu-header { position: absolute; top: 60px; left: 80px; }
-.menu-header h1 {
-  font-family: 'Cinzel', serif;
-  font-size: 4.2em;
-  color: #d4af37;
-  text-shadow: 0 0 20px rgba(212,175,55,0.6), 3px 3px 8px #000;
-  line-height: 1;
-  letter-spacing: 2px;
+.char-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 22% 48%,rgba(217,156,73,.28),transparent 28%),
+    linear-gradient(90deg,rgba(6,8,10,.15),rgba(6,8,10,.76) 58%,rgba(6,8,10,.96)),
+    linear-gradient(180deg,#8e6a43 0%,#30251b 52%,#080a0d 100%);
 }
-.menu-header h1 .small { font-size: 0.35em; display: block; color: #f0d060; letter-spacing: 8px; margin: 5px 0; }
-.menu-header .subtitle {
-  font-family: 'Lora', serif; font-style: italic;
-  font-size: 1.1em; color: #e8d9b0; margin-top: 15px;
-  letter-spacing: 3px; text-shadow: 2px 2px 4px #000;
+.char-bg:after{
+  content:"";position:absolute;inset:0;opacity:.28;
+  background-image:radial-gradient(circle,rgba(255,255,255,.12) 0 1px,transparent 1px);
+  background-size:5px 5px;mix-blend-mode:soft-light;
 }
-
-.menu-quote {
-  position: absolute; bottom: 120px; left: 80px;
-  max-width: 420px;
-  font-style: italic; color: #e8d9b0;
-  text-shadow: 2px 2px 4px #000;
-  line-height: 1.6;
+.char-vignette{
+  position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 150px #000, inset 0 -90px 100px #0008;
 }
-.menu-quote .ref { display: block; margin-top: 10px; color: #d4af37; font-weight: bold; font-style: normal; }
-
-.menu-right-quote {
-  position: absolute; right: 100px; top: 50%; transform: translateY(-50%);
-  background: rgba(20,10,5,0.75);
-  border: 1px solid #8b6914;
-  padding: 25px 30px;
-  max-width: 280px;
-  font-style: italic;
-  color: #e8d9b0;
-  text-shadow: 1px 1px 3px #000;
-  line-height: 1.5;
+.char-header{
+  position:absolute;left:5vw;top:5vh;z-index:2;
 }
-.menu-right-quote .ref { display: block; margin-top: 12px; color: #d4af37; font-weight: bold; font-style: normal; text-align: right; }
-
-.menu-buttons {
-  position: absolute; left: 80px; top: 280px;
-  display: flex; flex-direction: column; gap: 12px;
+.char-ey{
+  font:11px Arial;letter-spacing:5px;color:#e0bd72;
 }
-.menu-btn {
-  background: linear-gradient(180deg, rgba(30,20,10,0.95), rgba(10,5,0,0.95));
-  border: 2px solid #8b6914;
-  color: #e8d9b0;
-  padding: 16px 30px;
-  font-family: 'Cinzel', serif;
-  font-size: 1.15em;
-  letter-spacing: 3px;
-  cursor: pointer;
-  width: 260px;
-  text-align: left;
-  display: flex; align-items: center; gap: 15px;
-  transition: all 0.25s;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5), inset 0 0 20px rgba(139,105,20,0.1);
+.char-chapter{
+  margin-top:8px;font:12px Arial;letter-spacing:2px;color:#d5cbbd;
 }
-.menu-btn:hover {
-  border-color: #ffd700;
-  color: #ffd700;
-  transform: translateX(5px);
-  box-shadow: 0 0 25px rgba(212,175,55,0.4), inset 0 0 20px rgba(212,175,55,0.15);
+.char-layout{
+  position:absolute;inset:13vh 5vw 9vh;
+  z-index:2;display:grid;grid-template-columns:minmax(330px,1fr) minmax(390px,520px);
+  gap:5vw;align-items:center;
 }
-.menu-btn.primary {
-  background: linear-gradient(180deg, rgba(139,105,20,0.9), rgba(80,50,10,0.9));
-  border-color: #ffd700;
-  color: #fff;
+.char-art{
+  height:100%;min-height:430px;position:relative;display:grid;place-items:center;
+  border-right:1px solid rgba(214,176,100,.20);
 }
-.menu-btn.primary:hover {
-  background: linear-gradient(180deg, rgba(180,130,30,0.95), rgba(100,70,15,0.95));
+.art-light{
+  position:absolute;left:48%;top:46%;width:230px;height:230px;border-radius:50%;
+  background:#e4ad5a22;box-shadow:0 0 100px 55px #d58b3322;
 }
-.menu-btn .icon { font-size: 1.3em; }
-
-.menu-footer {
-  position: absolute; bottom: 30px; right: 80px;
-  background: rgba(20,10,5,0.8);
-  border: 1px solid #8b6914;
-  padding: 12px 20px;
-  font-size: 0.85em;
-  color: #d4af37;
-  letter-spacing: 2px;
+.hero-big{transform:scale(1.35);margin-top:-25px}
+.hero-big .body{background:#b8a37f}
+.staff{
+  position:absolute;width:9px;height:285px;left:139px;top:78px;
+  background:linear-gradient(90deg,#3b2618,#8b6037,#3b2618);
+  transform:rotate(8deg);border-radius:8px;
+  box-shadow:0 0 10px #0008;
 }
-
-/* ============ CHARACTER CREATION ============ */
-#screen-create {
-  background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)),
-    url('https://image.qwenlm.ai/public_source/5d442bff-2692-4500-beb4-c8365c2cc91e/133b65b38-218d-4ed3-b282-bcdb3dcf0f29.png') center/cover;
-  display: flex; flex-direction: column; padding: 30px 50px;
+.staff:before{
+  content:"";position:absolute;width:25px;height:35px;left:-8px;top:-12px;
+  border:5px solid #6f4b2a;border-bottom:0;border-radius:18px 18px 0 0;
 }
-#screen-create.active { display: flex; }
-
-.create-header {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  margin-bottom: 20px;
+.art-caption{
+  position:absolute;bottom:3vh;left:8%;text-align:left;
+  display:flex;flex-direction:column;gap:4px;
 }
-.create-header .logo {
-  font-family: 'Cinzel', serif;
-  color: #d4af37;
-  text-shadow: 2px 2px 6px #000;
+.art-caption span{font:700 14px Arial;letter-spacing:3px;color:#f1d28f}
+.art-caption small{font:13px Arial;color:#cfc6b7}
+.char-card{
+  align-self:center;max-height:86vh;overflow:auto;
+  padding:34px 38px;background:linear-gradient(145deg,rgba(12,17,22,.94),rgba(7,10,13,.88));
+  border:1px solid #c89a5266;border-radius:14px;
+  box-shadow:0 25px 80px #000b, inset 0 1px #fff1;
+  backdrop-filter:blur(9px);
 }
-.create-header .logo h1 { font-size: 2.5em; line-height: 1; }
-.create-header .logo .small { font-size: 0.3em; letter-spacing: 6px; color: #f0d060; display: block; margin: 3px 0; }
-.create-header .logo .subtitle { font-size: 0.9em; color: #e8d9b0; font-style: italic; letter-spacing: 2px; }
-
-.create-title {
-  text-align: right;
-  border: 1px solid #8b6914;
-  background: rgba(20,10,5,0.6);
-  padding: 15px 25px;
+.char-card h1{
+  margin:7px 0 9px;font-size:clamp(30px,3vw,44px);font-weight:normal;
+  color:#f1d18b;letter-spacing:.5px;
 }
-.create-title .chapter { font-size: 0.85em; color: #d4af37; letter-spacing: 3px; }
-.create-title h2 { font-family: 'Cinzel', serif; font-size: 2.2em; color: #d4af37; text-shadow: 2px 2px 4px #000; margin: 5px 0; }
-.create-title .tagline { font-style: italic; color: #e8d9b0; font-size: 1em; }
-
-.create-body {
-  display: flex; gap: 30px; flex: 1;
+.char-card p{margin:0 0 22px;font:14px/1.55 Arial;color:#c4c0b9;max-width:430px}
+.char-card .lab{display:block;margin:15px 0 7px;color:#b9b3a9;font:10px Arial;letter-spacing:2px}
+.char-card .input{
+  width:100%;padding:13px 14px;background:#0b1218dd;border:1px solid #5b6570;
+  border-radius:6px;color:#f7f1e7;outline:none;
 }
-.create-preview {
-  flex: 0 0 320px;
-  background: rgba(20,10,5,0.5);
-  border: 2px solid #8b6914;
-  padding: 15px;
-  display: flex; flex-direction: column;
+.char-card .input:focus{border-color:#d7ac5c;box-shadow:0 0 0 2px #d7ac5c22}
+.char-card .choices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.char-card #clothes{grid-template-columns:repeat(2,1fr)}
+.char-card .choice{
+  min-height:62px;text-align:left;padding:9px 11px;border:1px solid #3e4a54;
+  background:#0d161eee;color:#e9e2d6;border-radius:6px;cursor:pointer;
+  transition:.16s;
 }
-.preview-main {
-  flex: 1;
-  background: url('https://image.qwenlm.ai/public_source/5d442bff-2692-4500-beb4-c8365c2cc91e/1beb519f2-aeb4-4107-8b74-737902a073ab.png') center/cover;
-  border: 1px solid #5a4010;
-  min-height: 400px;
+.char-card .choice b{display:block;font:700 11px Arial;letter-spacing:1.2px}
+.char-card .choice span{display:block;margin-top:5px;font:10px Arial;color:#929ca4}
+.char-card .choice:hover{border-color:#a9874f;transform:translateY(-1px)}
+.char-card .choice.active{
+  border-color:#e0b75f;background:linear-gradient(145deg,#2a2114,#111820);
+  box-shadow:inset 0 0 18px #d69a3820;
 }
-.preview-avatars {
-  display: flex; gap: 10px; margin-top: 10px;
+.char-note{
+  display:flex;gap:10px;align-items:center;margin:20px 0 18px;padding:11px 12px;
+  border-top:1px solid #c99d4b33;border-bottom:1px solid #c99d4b33;
+  font:11px/1.4 Arial;color:#aaa9a4;
 }
-.preview-avatar {
-  width: 80px; height: 80px;
-  background: #2a1a0a;
-  border: 2px solid #5a4010;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 2em;
+.note-mark{color:#e1b968;font-size:15px}
+.char-actions{display:flex;gap:10px;align-items:center}
+.back-btn{
+  padding:13px 15px;background:transparent;border:1px solid #58636c;color:#c8c3ba;
+  border-radius:6px;cursor:pointer;font:700 11px Arial;letter-spacing:1px;
 }
-.preview-avatar.selected { border-color: #ffd700; box-shadow: 0 0 10px rgba(255,215,0,0.5); }
-.preview-avatar:hover { border-color: #d4af37; }
-.preview-label { text-align: center; margin-top: 10px; font-style: italic; color: #aaa; font-size: 0.9em; }
-
-.create-form {
-  flex: 1;
-  background: rgba(15,8,3,0.85);
-  border: 2px solid #8b6914;
-  padding: 25px;
-  display: flex; flex-direction: column; gap: 20px;
+.back-btn:hover{border-color:#d0aa62;color:#f0d18c}
+.char-card .start{
+  flex:1;margin-top:0;padding:14px 18px;border-radius:6px;
+  border:1px solid #f1d18a66;box-shadow:0 8px 25px #0009;
 }
-.form-section h3 {
-  font-family: 'Cinzel', serif;
-  color: #d4af37;
-  font-size: 1.1em;
-  letter-spacing: 2px;
-  margin-bottom: 10px;
-  display: flex; align-items: center; gap: 10px;
+.char-card .start span{font-size:20px;margin-left:8px}
+.char-footer{
+  position:absolute;right:4vw;bottom:3vh;z-index:2;font:10px Arial;letter-spacing:2px;color:#827d74;
 }
-.form-section h3 .sym { color: #ffd700; font-size: 1.2em; }
-
-.name-input {
-  width: 100%;
-  background: rgba(0,0,0,0.4);
-  border: 1px solid #5a4010;
-  padding: 12px 15px;
-  color: #e8d9b0;
-  font-family: 'Lora', serif;
-  font-size: 1em;
-  outline: none;
+@media(max-width:900px){
+  .char-layout{inset:12vh 5vw 5vh;grid-template-columns:1fr}
+  .char-art{display:none}
+  .char-card{width:min(560px,94vw);margin:auto}
 }
-.name-input:focus { border-color: #d4af37; }
-
-.option-grid { display: flex; gap: 12px; }
-.option-card {
-  flex: 1;
-  background: rgba(0,0,0,0.3);
-  border: 2px solid #5a4010;
-  padding: 15px 10px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.option-card:hover { border-color: #d4af37; }
-.option-card.selected {
-  border-color: #ffd700;
-  background: rgba(139,105,20,0.2);
-  box-shadow: 0 0 15px rgba(255,215,0,0.3);
-}
-.option-card .ico { font-size: 2em; margin-bottom: 5px; }
-.option-card .name { font-family: 'Cinzel', serif; color: #d4af37; font-size: 0.95em; letter-spacing: 1px; }
-.option-card .desc { font-size: 0.8em; color: #aaa; margin-top: 3px; font-style: italic; }
-
-.form-quote {
-  font-style: italic; color: #e8d9b0;
-  border-left: 3px solid #8b6914;
-  padding-left: 15px;
-  font-size: 0.95em;
-  line-height: 1.5;
+@media(max-width:520px){
+  .char-card{padding:24px 20px}
+  .char-card .choices{grid-template-columns:1fr}
+  .char-card #clothes{grid-template-columns:1fr}
+  .char-actions{flex-direction:column}
+  .back-btn,.char-card .start{width:100%}
 }
 
-.create-footer {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-top: 10px;
-}
-.btn-back {
-  background: rgba(20,10,5,0.8);
-  border: 2px solid #8b6914;
-  color: #e8d9b0;
-  padding: 12px 25px;
-  font-family: 'Cinzel', serif;
-  letter-spacing: 2px;
-  cursor: pointer;
-  font-size: 1em;
-}
-.btn-back:hover { border-color: #ffd700; color: #ffd700; }
 
-.btn-enter {
-  background: linear-gradient(180deg, rgba(139,105,20,0.95), rgba(80,50,10,0.95));
-  border: 2px solid #ffd700;
-  color: #fff;
-  padding: 15px 35px;
-  font-family: 'Cinzel', serif;
-  font-size: 1.1em;
-  letter-spacing: 3px;
-  cursor: pointer;
-  box-shadow: 0 0 20px rgba(212,175,55,0.4);
-  transition: all 0.25s;
-}
-.btn-enter:hover {
-  box-shadow: 0 0 30px rgba(255,215,0,0.6);
-  transform: translateY(-2px);
-}
+/* V0.3.6 — interfaz de creación basada en la captura de referencia */
+.char{position:fixed!important;inset:0!important;display:grid!important;place-items:center!important;background:#0b1727!important;color:#f4eee5!important;overflow:auto!important}
+.char.hidden{display:none!important}
+.ref-create{width:min(1040px,82vw);height:min(650px,78vh);min-height:500px;display:grid;grid-template-columns:1.08fr .92fr;border-radius:18px;overflow:hidden;box-shadow:0 25px 70px #0008;border:1px solid #fff2}
+.ref-left{position:relative;overflow:hidden;background:radial-gradient(circle at 52% 45%,#f8dfbd,#efd1b2 32%,#dcb9a0 62%,#d0a994)}
+.ref-left:after{content:"";position:absolute;left:0;right:0;bottom:0;height:28%;background:linear-gradient(transparent,#c79287aa)}
+.ref-character{position:absolute;left:50%;top:52%;width:170px;height:340px;transform:translate(-50%,-50%);filter:drop-shadow(0 14px 8px #5b3d3d55)}
+.ref-head{position:absolute;left:52px;top:20px;width:66px;height:82px;border-radius:48%;background:#c98f70;z-index:4}
+.ref-hair{position:absolute;left:48px;top:12px;width:75px;height:42px;border-radius:55% 55% 25% 25%;background:#4d3440;z-index:5}
+.ref-neck{position:absolute;left:72px;top:91px;width:30px;height:28px;background:#b97e63;z-index:3}
+.ref-torso{position:absolute;left:42px;top:108px;width:88px;height:150px;background:linear-gradient(90deg,#eeeae4,#fffdf8 48%,#e9e4df);clip-path:polygon(14% 0,86% 0,100% 100%,0 100%);z-index:2}
+.ref-belt{position:absolute;left:44px;top:169px;width:84px;height:9px;background:#805b50;z-index:4;border-radius:4px}
+.ref-leg{position:absolute;top:245px;width:31px;height:87px;background:#8d7a7a;border-radius:2px;z-index:1}.ref-leg-a{left:49px}.ref-leg-b{left:91px}
+.ref-foot{position:absolute;top:326px;width:43px;height:9px;background:#765d67;border-radius:7px;z-index:1}.ref-foot-a{left:43px}.ref-foot-b{left:88px}
+.ref-right{background:linear-gradient(145deg,#172c45,#102743 55%,#123053);padding:42px 46px 36px;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box}
+.ref-kicker{font:11px Arial;letter-spacing:4px;color:#d7b76e;margin-bottom:8px}
+.ref-right h1{margin:0 0 28px;font:normal 38px Georgia,serif;color:#f4d28d}
+.ref-label{margin:13px 0 7px;font:11px Arial;font-weight:bold;letter-spacing:1.5px;color:#c8d5e2}
+.ref-input{width:100%;box-sizing:border-box;padding:13px 14px;border-radius:6px;border:1px solid #5081b2;background:#173756;color:#f5f1e8;font:16px Georgia;outline:none}
+.ref-input:focus{border-color:#e0bd70;box-shadow:0 0 0 2px #e0bd7022}
+.ref-row{display:flex;gap:7px}.ref-choice{padding:11px 15px;border-radius:6px;border:1px solid #47729a;background:#173a5c;color:#f1eee8;font:bold 14px Georgia;cursor:pointer}
+.ref-choice:hover{border-color:#d5b267}.ref-choice.active{border-color:#e2bd6c;background:#18324d;box-shadow:0 0 0 1px #e2bd6c44;color:#fff4d8}
+.ref-quote{margin:22px 0 25px;font:italic 13px/1.45 Georgia;color:#e5e4df}
+.ref-enter{width:100%;padding:15px 18px;border-radius:6px;border:1px solid #efd28b;background:linear-gradient(180deg,#f3d996,#d8b66b);color:#49391f;font:bold 14px Georgia;cursor:pointer;box-shadow:0 5px 15px #0004}
+.ref-enter:hover{filter:brightness(1.08);transform:translateY(-1px)}.ref-enter span{font-size:18px;margin-left:5px}
+@media(max-width:850px){.ref-create{width:92vw;height:auto;min-height:0;grid-template-columns:1fr}.ref-left{height:330px}.ref-right{padding:30px}}
+@media(max-width:520px){.ref-left{height:260px}.ref-right{padding:25px 20px}.ref-right h1{font-size:31px}.ref-row{flex-wrap:wrap}}
 
-/* ============ INTRO SCREEN ============ */
-#screen-intro {
-  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
-    url('https://image.qwenlm.ai/public_source/5d442bff-2692-4500-beb4-c8365c2cc91e/133b65b38-218d-4ed3-b282-bcdb3dcf0f29.png') center/cover;
-  display: flex; align-items: center; justify-content: center;
-}
-#screen-intro.active { display: flex; }
-.intro-card {
-  background: rgba(15,8,3,0.9);
-  border: 2px solid #8b6914;
-  padding: 50px 60px;
-  max-width: 600px;
-  text-align: center;
-}
-.intro-card .chapter { color: #d4af37; letter-spacing: 4px; font-size: 0.9em; }
-.intro-card h2 { font-family: 'Cinzel', serif; font-size: 2.5em; color: #d4af37; margin: 15px 0; text-shadow: 2px 2px 4px #000; }
-.intro-card .location { font-size: 1.3em; color: #f0d060; letter-spacing: 3px; margin-bottom: 20px; }
-.intro-card p { font-style: italic; color: #e8d9b0; line-height: 1.7; font-size: 1.05em; margin-bottom: 30px; }
 
-/* ============ GAME SCREEN ============ */
-#screen-game { background: #000; }
-#screen-game.active { display: block; }
-#game-canvas { position: absolute; inset: 0; }
+/* V0.3.6 — pantalla de creación basada en la referencia aprobada */
+.character-reference-ui{position:absolute;inset:0;background:#080b10;display:grid;place-items:center;overflow:hidden}
+.character-reference-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;background:#080b10;user-select:none;pointer-events:none}
+.character-hotspots{
+  position:absolute;
+  width:min(100vw,177.79vh);
+  height:min(100vh,56.28vw);
+  left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  aspect-ratio:1672/941;
+}
+.ref-hotspot{position:absolute;border:0;background:transparent;cursor:pointer;padding:0;border-radius:10px;transition:.15s}
+.ref-hotspot:hover{background:rgba(255,196,73,.08);box-shadow:inset 0 0 24px rgba(255,194,70,.16),0 0 14px rgba(255,194,70,.10)}
+.ref-name-hotspot{position:absolute;left:48.8%;top:24.3%;width:27.8%;height:4.9%;box-sizing:border-box;border:0;background:transparent;color:#e9e1d2;padding:0 2.2%;font:clamp(12px,1.15vw,18px) Georgia,serif;outline:none}
+.ref-name-hotspot:focus{border:1px solid #e4bb67;background:rgba(5,13,22,.45);box-shadow:0 0 0 2px #e4bb6722}
+.face-viajero{left:46.5%;top:35.0%;width:10.7%;height:13.7%}
+.face-pastor{left:57.0%;top:35.0%;width:10.7%;height:13.7%}
+.face-guerrero{left:68.0%;top:35.0%;width:10.7%;height:13.7%}
+.cloth-desierto{left:46.4%;top:53.8%;width:16.2%;height:12.3%}
+.cloth-campamento{left:62.9%;top:53.8%;width:16.2%;height:12.3%}
+.back-hotspot{left:2.8%;top:86.0%;width:15.5%;height:7.0%}
+.enter-hotspot{left:46.5%;top:82.0%;width:32.5%;height:8.5%}
+.character-status{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);color:#f3d58f;font:11px Arial;letter-spacing:1px;text-shadow:0 2px 8px #000;opacity:0;transition:opacity .2s;pointer-events:none}
+.character-status.show{opacity:1}
+@media(max-aspect-ratio:3/2){.character-reference-bg{height:100%;width:auto;min-width:100%;object-fit:cover}}
 
-.hud { position: absolute; pointer-events: none; }
-.hud-panel {
-  background: linear-gradient(180deg, rgba(15,8,3,0.92), rgba(5,2,0,0.92));
-  border: 2px solid #8b6914;
-  padding: 15px 20px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.8), inset 0 0 15px rgba(139,105,20,0.1);
-  pointer-events: auto;
-}
 
-#hud-stats { top: 20px; left: 20px; min-width: 240px; }
-#hud-stats .player-name {
-  font-family: 'Cinzel', serif;
-  color: #d4af37;
-  font-size: 1.1em;
-  letter-spacing: 2px;
-  margin-bottom: 3px;
+/* V0.3.6 — entrada cinematográfica al mundo */
+.arrival-cinematic{
+  position:fixed;inset:0;z-index:100;overflow:hidden;
+  background:#080a0d;color:#f3ead8;display:grid;place-items:center;
 }
-#hud-stats .player-role {
-  font-size: 0.8em;
-  color: #aaa;
-  font-style: italic;
-  margin-bottom: 12px;
-  letter-spacing: 1px;
+.arrival-cinematic.hidden{display:none!important}
+.arrival-sky{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 53% 43%,rgba(245,181,91,.75) 0%,rgba(218,132,61,.34) 22%,transparent 48%),
+    linear-gradient(180deg,#172536 0%,#5d5960 31%,#d39458 59%,#30221b 100%);
 }
-.stat-row { margin-bottom: 8px; }
-.stat-label {
-  display: flex; justify-content: space-between;
-  font-size: 0.85em; margin-bottom: 3px;
-  color: #e8d9b0;
+.arrival-sky:before{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(166deg,transparent 55%,#17161a 55.3%,#17161a 74%,transparent 74.3%),
+    linear-gradient(194deg,transparent 59%,#252020 59.3%,#252020 78%,transparent 78.3%);
+  opacity:.92;
 }
-.stat-bar {
-  width: 100%; height: 8px;
-  background: rgba(0,0,0,0.6);
-  border: 1px solid #3a2a10;
-  border-radius: 4px; overflow: hidden;
+.arrival-sky:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,#0009,transparent 38%,transparent 65%,#0009),linear-gradient(0deg,#000b,transparent 38%);
 }
-.stat-fill { height: 100%; transition: width 0.3s; }
-.stat-fill.hp { background: linear-gradient(90deg, #8b0000, #c0392b); }
-.stat-fill.water { background: linear-gradient(90deg, #1a5276, #2980b9); }
-.stat-fill.stamina { background: linear-gradient(90deg, #1e6f1e, #27ae60); }
+.arrival-title{
+  position:absolute;top:12%;left:8%;z-index:2;
+  text-shadow:0 3px 18px #000;
+  font:normal clamp(28px,4vw,58px) Georgia,serif;letter-spacing:4px;color:#f2d08a;
+}
+.arrival-title small{display:block;margin-top:9px;font:11px Arial;letter-spacing:4px;color:#e5ddd0}
+.arrival-copy{
+  position:absolute;z-index:3;left:8%;bottom:11%;max-width:510px;
+  padding:22px 26px;border-left:2px solid #d9b363;background:linear-gradient(90deg,#05080bd9,transparent);
+}
+.arrival-location{font:700 12px Arial;letter-spacing:4px;color:#e2bd70}
+.arrival-copy p{font:17px/1.6 Georgia,serif;color:#eee7da}
+.arrival-copy button{
+  margin-top:10px;padding:13px 25px;border:1px solid #e5c77f;border-radius:5px;
+  background:#151b20cc;color:#f4d994;font:bold 12px Arial;letter-spacing:2px;cursor:pointer;
+}
+.arrival-copy button:hover{background:#3b3020}
 
-#hud-mission { top: 20px; right: 20px; max-width: 320px; }
-#hud-mission h3 {
-  font-family: 'Cinzel', serif;
-  color: #d4af37;
-  font-size: 0.95em;
-  letter-spacing: 2px;
-  border-bottom: 1px solid #5a4010;
-  padding-bottom: 6px;
-  margin-bottom: 8px;
-}
-#hud-mission .mission-text {
-  font-size: 0.9em; color: #e8d9b0; line-height: 1.5;
-  font-style: italic;
-}
-
-#hud-compass {
-  bottom: 20px; left: 50%; transform: translateX(-50%);
-  padding: 10px 20px;
-  font-family: 'Cinzel', serif;
-  color: #d4af37;
-  letter-spacing: 3px;
-  font-size: 0.9em;
-}
-
-#hud-controls {
-  bottom: 20px; right: 20px;
-  font-size: 0.8em;
-  color: #aaa;
-  padding: 10px 15px;
-}
-#hud-controls kbd {
-  background: rgba(139,105,20,0.3);
-  border: 1px solid #8b6914;
-  padding: 2px 6px;
-  margin: 0 3px;
-  color: #d4af37;
-  font-family: monospace;
-}
-
-#interaction-prompt {
-  bottom: 120px; left: 50%; transform: translateX(-50%);
-  background: linear-gradient(180deg, rgba(139,105,20,0.95), rgba(80,50,10,0.95));
-  border: 2px solid #ffd700;
-  padding: 12px 25px;
-  font-family: 'Cinzel', serif;
-  color: #fff;
-  letter-spacing: 2px;
-  box-shadow: 0 0 20px rgba(255,215,0,0.4);
-  display: none;
-  animation: pulse 1.5s infinite;
-}
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(255,215,0,0.4); }
-  50% { box-shadow: 0 0 30px rgba(255,215,0,0.7); }
-}
-
-#dialog-box {
-  bottom: 80px; left: 50%; transform: translateX(-50%);
-  width: 70%; max-width: 800px;
-  display: none;
-}
-#dialog-box .speaker {
-  font-family: 'Cinzel', serif;
-  color: #ffd700;
-  font-size: 1.1em;
-  letter-spacing: 3px;
-  margin-bottom: 8px;
-  text-align: center;
-}
-#dialog-box .text {
-  font-size: 1.05em;
-  color: #e8d9b0;
-  line-height: 1.6;
-  text-align: center;
-  font-style: italic;
-  padding: 10px 20px;
-}
-#dialog-box .hint {
-  text-align: center;
-  font-size: 0.8em;
-  color: #888;
-  margin-top: 10px;
-  letter-spacing: 2px;
-}
-
-.modal-overlay {
-  position: absolute; inset: 0;
-  background: rgba(0,0,0,0.7);
-  display: none;
-  align-items: center; justify-content: center;
-  z-index: 100;
-}
-.modal-overlay.active { display: flex; }
-.modal {
-  background: linear-gradient(180deg, rgba(20,10,5,0.98), rgba(10,5,2,0.98));
-  border: 2px solid #8b6914;
-  padding: 30px;
-  min-width: 400px;
-  max-width: 500px;
-  max-height: 80vh;
-  overflow-y: auto;
-  box-shadow: 0 0 40px rgba(0,0,0,0.9);
-}
-.modal h2 {
-  font-family: 'Cinzel', serif;
-  color: #d4af37;
-  text-align: center;
-  letter-spacing: 3px;
-  border-bottom: 2px solid #5a4010;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-}
-.modal-section { margin-bottom: 20px; }
-.modal-section h4 {
-  color: #d4af37;
-  font-family: 'Cinzel', serif;
-  font-size: 0.9em;
-  letter-spacing: 2px;
-  border-bottom: 1px solid #3a2a10;
-  padding-bottom: 5px;
-  margin-bottom: 8px;
-}
-.modal-item {
-  display: flex; justify-content: space-between;
-  padding: 6px 0;
-  border-bottom: 1px dashed #2a1a0a;
-  color: #e8d9b0;
-  font-size: 0.95em;
-}
-.modal-item .qty { color: #d4af37; font-weight: bold; }
-.modal-close {
-  width: 100%;
-  background: rgba(139,105,20,0.3);
-  border: 1px solid #8b6914;
-  color: #d4af37;
-  padding: 10px;
-  font-family: 'Cinzel', serif;
-  letter-spacing: 2px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-.modal-close:hover { background: rgba(139,105,20,0.5); }
-
-#notification {
-  top: 100px; left: 50%; transform: translateX(-50%);
-  background: linear-gradient(180deg, rgba(139,105,20,0.95), rgba(80,50,10,0.95));
-  border: 2px solid #ffd700;
-  padding: 12px 25px;
-  font-family: 'Cinzel', serif;
-  color: #fff;
-  letter-spacing: 2px;
-  display: none;
-  z-index: 200;
-  box-shadow: 0 0 25px rgba(255,215,0,0.5);
-}
-
-#crosshair {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 20px; height: 20px;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-#crosshair::before, #crosshair::after {
-  content: ''; position: absolute;
-  background: rgba(212,175,55,0.6);
-}
-#crosshair::before { top: 9px; left: 0; width: 20px; height: 2px; }
-#crosshair::after { top: 0; left: 9px; width: 2px; height: 20px; }
-
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #0a0502; }
-::-webkit-scrollbar-thumb { background: #8b6914; }
-
-/* Loading */
-#loading {
-  position: absolute; inset: 0;
-  background: #000;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  z-index: 1000;
-}
-#loading .spinner {
-  width: 60px; height: 60px;
-  border: 4px solid #3a2a10;
-  border-top-color: #d4af37;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-#loading .text {
-  font-family: 'Cinzel', serif;
-  color: #d4af37;
-  margin-top: 20px;
-  letter-spacing: 3px;
-}
 </style>
-</head>
 <body>
-<div id="app">
-
-  <div id="loading">
-    <div class="spinner"></div>
-    <div class="text">CARGANDO MUNDO...</div>
+<section id="mainmenu" class="mainmenu">
+  <div class="menu-stage">
+    <img src="portada.png" class="menu-bg" alt="Crónicas de la Tierra Prometida">
+    <div class="menu-hotspots">
+      <button id="menuPlay" class="menu-hotspot hs-play" aria-label="Jugar"></button>
+      <button id="menuContinue" class="menu-hotspot hs-continue" aria-label="Continuar"></button>
+      <button id="menuSettings" class="menu-hotspot hs-settings" aria-label="Ajustes"></button>
+      <button id="menuHelp" class="menu-hotspot hs-help" aria-label="Ayuda"></button>
+      <button id="menuExit" class="menu-hotspot hs-exit" aria-label="Salir"></button>
+    </div>
+    <div class="menucontent">
+      <h1 class="menutitle">Crónicas de<br>la Tierra Prometida</h1>
+      <div class="menusub">UNA AVENTURA DE FE · VALORES · DECISIONES</div>
+      <div class="menubuttons">
+        <button class="menubtn play" id="playText">JUGAR</button>
+        <button class="menubtn" id="continueText">CONTINUAR</button>
+        <button class="menubtn" id="settingsText">AJUSTES</button>
+        <button class="menubtn" id="helpText">AYUDA</button>
+        <button class="menubtn" id="exitText">SALIR</button>
+      </div>
+      <div class="menuquote">“Esfuérzate y sé valiente; no temas ni desmayes.”<br><small>Josué 1:9</small></div>
+    </div>
+    <div class="menubadge">V1.0 · AVENTURA COMPLETA</div>
   </div>
+</section>
 
-  <!-- ============ MAIN MENU ============ -->
-  <div id="screen-menu" class="screen">
-    <div class="menu-header">
-      <h1>CRÓNICAS<span class="small">DE LA</span>TIERRA PROMETIDA</h1>
-      <div class="subtitle">UN VIAJE DE FE, SUPERVIVENCIA Y ESPERANZA</div>
-    </div>
+<section id="intro" class="screen intro hidden">
+ <div class="introbox"><div class="introey">CRÓNICAS DE LA TIERRA PROMETIDA</div><h1 class="introtitle">LA PRIMERA PUERTA</h1>
+ <div class="gate" id="introGate"><div class="stone"></div><div class="opening"></div><div class="leaf"></div><div class="light"></div></div>
+ <div class="introsub">Un camino comienza frente a una puerta. Lo que hay detrás todavía no ha sido revelado.</div>
+ <button id="begin" class="introstart">COMENZAR EL CAMINO →</button></div><div class="vignette"></div>
+</section>
 
-    <div class="menu-buttons">
-      <button class="menu-btn primary" onclick="goToCreate()"><span class="icon">▶</span> JUGAR</button>
-      <button class="menu-btn" onclick="loadGame()"><span class="icon">📖</span> CONTINUAR</button>
-      <button class="menu-btn" onclick="showSettings()"><span class="icon">⚙</span> AJUSTES</button>
-      <button class="menu-btn" onclick="showHelp()"><span class="icon">?</span> AYUDA</button>
-      <button class="menu-btn" onclick="exitGame()"><span class="icon">🚪</span> SALIR</button>
-    </div>
+<section id="character" class="screen char hidden">
+ <div class="character-reference-ui">
+  <img class="character-reference-bg" src="creacion_personaje.png" alt="">
+  <div class="character-hotspots">
+   <input id="name" class="ref-name-hotspot" maxlength="18" value="Eliab" aria-label="Nombre" autocomplete="off">
+   <button class="ref-hotspot face-viajero active" data-face="Viajero" aria-label="Viajero"></button>
+   <button class="ref-hotspot face-pastor" data-face="Pastor" aria-label="Pastor"></button>
+   <button class="ref-hotspot face-guerrero" data-face="Guerrero" aria-label="Guerrero"></button>
+   <button class="ref-hotspot cloth-desierto active" data-clothes="Desierto" aria-label="Desierto"></button>
+   <button class="ref-hotspot cloth-campamento" data-clothes="Campamento" aria-label="Campamento"></button>
+   <button id="backToMenu" class="ref-hotspot back-hotspot" aria-label="Volver"></button>
+   <button id="enter" class="ref-hotspot enter-hotspot" aria-label="Entrar al mundo"></button>
+  </div><div id="characterStatus" class="character-status"></div>
+ </div>
+</section>
 
-    <div class="menu-quote">
-      "Porque yo sé los planes que tengo para ustedes, planes de bienestar y no de mal, para darles un futuro y una esperanza."
-      <span class="ref">Jeremías 29:11</span>
-    </div>
+<canvas id="game"></canvas>
+<div id="hud" class="hud hidden">
+ <div class="status panel">
+  <b id="hudName">Eliab</b><div class="small" id="hudClass">Viajero · Desierto</div>
+  <div class="small">VIDA</div><div class="bar"><div id="hp" class="fill hp" style="width:100%"></div></div>
+  <div class="small">AGUA</div><div class="bar"><div id="water" class="fill water" style="width:100%"></div></div>
+  <div class="small">RESISTENCIA</div><div class="bar"><div id="stam" class="fill stam" style="width:100%"></div></div>
+  <div class="small">FE <span id="faithVal">0</span> · BONDAD <span id="kindVal">0</span> · DISCERNIMIENTO <span id="discVal">0</span></div>
+  <div class="small">INVENTARIO: <span id="inv">0</span> provisiones · <span id="waterInv">0</span> agua</div>
+ </div>
+ <div class="objective panel"><div class="gold" id="chapter">CAPÍTULO I · EL COMIENZO</div><div id="obj">Habla con el anciano del campamento.</div></div>
+ <div class="controls panel">WASD / Flechas · Shift correr · E interactuar · M mapa · P guardar</div><div class="cross"></div>
+ <div id="minimap" class="panel" style="position:absolute;right:16px;bottom:64px;width:180px;padding:10px;font:11px Arial;display:none"></div>
+</div>
+<div id="dialog" class="dialog panel hidden"><button id="close">Cerrar</button><div class="dname" id="dn"></div><div class="dtext" id="dt"></div><div id="choices" style="margin-top:12px"></div></div>
+<div id="toast"></div><div id="doorPrompt" class="doorPrompt">E · Interactuar</div>
 
-    <div class="menu-right-quote">
-      "No temas, porque yo estoy contigo."
-      <span class="ref">Isaías 41:10</span>
-    </div>
-
-    <div class="menu-footer">JUEGO DE AVENTURA BÍBLICA · V0.5 — REALISMO MEJORADO</div>
-  </div>
-
-  <!-- ============ CHARACTER CREATION ============ -->
-  <div id="screen-create" class="screen">
-    <div class="create-header">
-      <div class="logo">
-        <h1>CRÓNICAS<span class="small">DE LA</span>TIERRA PROMETIDA</h1>
-        <div class="subtitle">UN VIAJE DE FE, SUPERVIVENCIA Y ESPERANZA</div>
-      </div>
-      <div class="create-title">
-        <div class="chapter">CAPÍTULO I · EL CAMINO COMIENZA</div>
-        <h2>Crea tu personaje</h2>
-        <div class="tagline">Tu historia comienza con una decisión...</div>
-      </div>
-    </div>
-
-    <div class="create-body">
-      <div class="create-preview">
-        <div class="preview-main" id="preview-main"></div>
-        <div class="preview-avatars">
-          <div class="preview-avatar selected" data-av="0" onclick="selectAvatar(0)">🧔</div>
-          <div class="preview-avatar" data-av="1" onclick="selectAvatar(1)">👨</div>
-          <div class="preview-avatar" data-av="2" onclick="selectAvatar(2)">👩</div>
-        </div>
-        <div class="preview-label">Vista previa del personaje</div>
-      </div>
-
-      <div class="create-form">
-        <div class="form-section">
-          <h3><span class="sym">👤</span> NOMBRE</h3>
-          <input type="text" class="name-input" id="char-name" placeholder="Ingresa el nombre de tu personaje..." value="Eliab">
-        </div>
-
-        <div class="form-section">
-          <h3><span class="sym"></span> APARIENCIA</h3>
-          <div class="option-grid">
-            <div class="option-card selected" data-role="viajero" onclick="selectRole(this)">
-              <div class="ico">🚶</div>
-              <div class="name">VIAJERO</div>
-              <div class="desc">Explora y descubre</div>
-            </div>
-            <div class="option-card" data-role="pastor" onclick="selectRole(this)">
-              <div class="ico">🪄</div>
-              <div class="name">PASTOR</div>
-              <div class="desc">Cuida y guía</div>
-            </div>
-            <div class="option-card" data-role="guerrero" onclick="selectRole(this)">
-              <div class="ico"></div>
-              <div class="name">GUERRERO</div>
-              <div class="desc">Protege y lucha</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-section">
-          <h3><span class="sym"></span> VESTIMENTA</h3>
-          <div class="option-grid">
-            <div class="option-card selected" data-outfit="desierto" onclick="selectOutfit(this)">
-              <div class="ico">🧥</div>
-              <div class="name">DESIERTO</div>
-              <div class="desc">Resistente al calor</div>
-            </div>
-            <div class="option-card" data-outfit="campamento" onclick="selectOutfit(this)">
-              <div class="ico">👘</div>
-              <div class="name">CAMPAMENTO</div>
-              <div class="desc">Para la vida en la aldea</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-quote">
-          «El camino comienza con un solo paso. Explora, sobrevive y descubre lo que te espera más allá de la puerta.»
-        </div>
-      </div>
-    </div>
-
-    <div class="create-footer">
-      <button class="btn-back" onclick="goToMenu()">← VOLVER</button>
-      <button class="btn-enter" onclick="startAdventure()">🚪 ENTRAR AL MUNDO DE LA AVENTURA →</button>
-    </div>
-  </div>
-
-  <!-- ============ INTRO ============ -->
-  <div id="screen-intro" class="screen">
-    <div class="intro-card">
-      <div class="chapter">CAPÍTULO I · EL COMIENZO DEL CAMINO</div>
-      <h2>EL CAMPAMENTO</h2>
-      <div class="location">LA PRIMERA PUERTA</div>
-      <p id="intro-text">Después de un largo viaje, has llegado al campamento. Algo te espera más allá de las montañas.</p>
-      <button class="btn-enter" onclick="enterWorld()">CONTINUAR →</button>
-    </div>
-  </div>
-
-  <!-- ============ GAME ============ -->
-  <div id="screen-game" class="screen">
-    <canvas id="game-canvas"></canvas>
-    <div id="crosshair"></div>
-
-    <div id="hud-stats" class="hud hud-panel">
-      <div class="player-name" id="hud-name">Eliab</div>
-      <div class="player-role" id="hud-role">Viajero del campamento</div>
-      <div class="stat-row">
-        <div class="stat-label"><span>❤️ VIDA</span><span id="hp-val">100</span></div>
-        <div class="stat-bar"><div class="stat-fill hp" id="hp-fill" style="width:100%"></div></div>
-      </div>
-      <div class="stat-row">
-        <div class="stat-label"><span>💧 AGUA</span><span id="water-val">80</span></div>
-        <div class="stat-bar"><div class="stat-fill water" id="water-fill" style="width:80%"></div></div>
-      </div>
-      <div class="stat-row">
-        <div class="stat-label"><span> RESISTENCIA</span><span id="stamina-val">100</span></div>
-        <div class="stat-bar"><div class="stat-fill stamina" id="stamina-fill" style="width:100%"></div></div>
-      </div>
-    </div>
-
-    <div id="hud-mission" class="hud hud-panel">
-      <h3>MISIÓN PRINCIPAL</h3>
-      <div class="mission-text" id="mission-text">Acércate a la primera puerta y descubre cómo comienza tu camino.</div>
-    </div>
-
-    <div id="hud-compass" class="hud hud-panel">N · E · S · O</div>
-
-    <div id="hud-controls" class="hud hud-panel">
-      <kbd>WASD</kbd> Mover · <kbd>Shift</kbd> Correr · <kbd>E</kbd> Interactuar · <kbd>I</kbd> Inventario · <kbd>M</kbd> Misiones
-    </div>
-
-    <div id="interaction-prompt" class="hud">Presiona <b>E</b> para interactuar</div>
-
-    <div id="dialog-box" class="hud hud-panel">
-      <div class="speaker" id="dialog-speaker">ANCIANO</div>
-      <div class="text" id="dialog-text">Bienvenido, viajero.</div>
-      <div class="hint">Presiona E para continuar</div>
-    </div>
-
-    <div id="notification" class="hud">+1 Madera</div>
-
-    <div id="modal-inventory" class="modal-overlay">
-      <div class="modal">
-        <h2>INVENTARIO</h2>
-        <div class="modal-section">
-          <h4>RECURSOS</h4>
-          <div id="inv-resources"></div>
-        </div>
-        <div class="modal-section">
-          <h4>COMIDA</h4>
-          <div id="inv-food"></div>
-        </div>
-        <div class="modal-section">
-          <h4>HERRAMIENTAS</h4>
-          <div id="inv-tools"></div>
-        </div>
-        <button class="modal-close" onclick="toggleInventory()">CERRAR</button>
-      </div>
-    </div>
-
-    <div id="modal-mission" class="modal-overlay">
-      <div class="modal">
-        <h2>MISIONES</h2>
-        <div class="modal-section" id="mission-list"></div>
-        <button class="modal-close" onclick="toggleMissions()">CERRAR</button>
-      </div>
-    </div>
-  </div>
-
+<div id="arrivalCinematic" class="arrival-cinematic hidden">
+ <div class="arrival-sky"></div><div class="arrival-title"><div>LA TIERRA PROMETIDA</div><small>CAPÍTULO I · EL COMIENZO DEL CAMINO</small></div>
+ <div class="arrival-copy"><div class="arrival-location">EL CAMPAMENTO</div><p>Después de un largo viaje, has llegado al campamento.<br>Algo te espera más allá de las montañas.</p><button id="continueArrival">CONTINUAR <span>→</span></button></div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
-// ============ GAME STATE ============
-const State = {
-  screen: 'menu',
-  char: { name: 'Eliab', role: 'viajero', outfit: 'desierto', avatar: 0 },
-  stats: { hp: 100, water: 80, stamina: 100 },
-  inventory: {
-    resources: { madera: 0, piedra: 0, cuero: 0, semillas: 0 },
-    food: { pan: 2, carne_seca: 1, hierbas: 0 },
-    tools: { hacha: 0, pico: 0, arco: 0 }
-  },
-  mission: {
-    stage: 0,
-    text: 'Acércate a la primera puerta y descubre cómo comienza tu camino.',
-    log: ['Capítulo I — El Comienzo del Camino']
-  },
-  dialog: { active: false },
-  playing: false
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js';
+
+const $=id=>document.getElementById(id);
+const menu=$('mainmenu'), intro=$('intro'), character=$('character'), hud=$('hud');
+const keys={}; addEventListener('keydown',e=>{keys[e.key.toLowerCase()]=true;if(['arrowup','arrowdown','arrowleft','arrowright',' '].includes(e.key.toLowerCase()))e.preventDefault()});
+addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
+
+const state={
+ name:'Eliab', face:'Viajero', clothes:'Desierto', hp:100, water:100, stam:100,
+ faith:0, kindness:0, discernment:0, provisions:0, waterInv:0,
+ quest:0, chapter:1, active:false, doorOpen:false, ending:false
 };
 
-// ============ TEXTURES (Realistas) ============
-const TEX = {
-  sand: 'https://image.qwenlm.ai/public_source/5d442bff-2692-4500-beb4-c8365c2cc91e/118d90153-b4e8-40eb-a9a5-aea533484d69.png',
-  stone: 'https://image.qwenlm.ai/public_source/5d442bff-2692-4500-beb4-c8365c2cc91e/1877ef46b-c20c-4698-9320-00e045dca925.png',
-  water: 'https://image.qwenlm.ai/public_source/5d442bff-2692-4500-beb4-c8365c2cc91e/1581a8ded-e35b-4855-95e1-9ba5a594ebc9.png',
-  wood: 'https://image.qwenlm.ai/public_source/5d442bff-2692-4500-beb4-c8365c2cc91e/1eb3e42af-d99c-4fed-8407-fefb78eeea8f.png',
-  palm: 'https://image.qwenlm.ai/public_source/5d442bff-2692-4500-beb4-c8365c2cc91e/1eda2506e-4e24-4118-a604-91d05ca1cf6e.png',
-  sky: 'https://image.qwenlm.ai/public_source/5d442bff-2692-4500-beb4-c8365c2cc91e/133b65b38-218d-4ed3-b282-bcdb3dcf0f29.png',
-  menu: 'https://image.qwenlm.ai/public_source/5d442bff-2692-4500-beb4-c8365c2cc91e/106f594b2-d607-4f91-9112-a6a6fc1abc72.png',
-  character: 'https://image.qwenlm.ai/public_source/5d442bff-2692-4500-beb4-c8365c2cc91e/1beb519f2-aeb4-4107-8b74-737902a073ab.png'
+function save(){localStorage.setItem('cronicas_tierra_prometida',JSON.stringify(state));toast('Partida guardada.');}
+function load(){try{const x=JSON.parse(localStorage.getItem('cronicas_tierra_prometida'));if(x){Object.assign(state,x);return true}}catch(e){}return false}
+function toast(t){const x=$('toast');x.textContent=t;x.style.opacity=1;clearTimeout(toast.t);toast.t=setTimeout(()=>x.style.opacity=0,1900)}
+function updateHUD(){
+ $('hudName').textContent=state.name; $('hudClass').textContent=state.face+' · '+state.clothes;
+ $('hp').style.width=state.hp+'%';$('water').style.width=state.water+'%';$('stam').style.width=state.stam+'%';
+ $('faithVal').textContent=state.faith;$('kindVal').textContent=state.kindness;$('discVal').textContent=state.discernment;
+ $('inv').textContent=state.provisions;$('waterInv').textContent=state.waterInv;
+}
+function setQuest(ch,obj){state.chapter=ch;$('chapter').textContent=ch===1?'CAPÍTULO I · EL COMIENZO':ch===2?'CAPÍTULO II · LA PRUEBA':ch===3?'CAPÍTULO III · EL VALLE':ch===4?'CAPÍTULO IV · LA DECISIÓN':'CAPÍTULO FINAL · LA PUERTA DE LA PROMESA';$('obj').textContent=obj}
+function dialog(name,text,buttons=[]){
+ $('dn').textContent=name;$('dt').textContent=text;const c=$('choices');c.innerHTML='';
+ buttons.forEach(b=>{const el=document.createElement('button');el.textContent=b.label;el.style.cssText='display:block;width:100%;margin:7px 0;padding:9px;background:#172432;color:#f3dfb0;border:1px solid #6d5733;border-radius:5px;cursor:pointer';el.onclick=()=>{b.action();$('dialog').classList.add('hidden')};c.appendChild(el)});
+ $('dialog').classList.remove('hidden');
+}
+$('close').onclick=()=>{$('dialog').classList.add('hidden')};
+
+document.querySelectorAll('[data-face]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-face]').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.face=b.dataset.face;$('characterStatus').textContent='Camino elegido: '+state.face;$('characterStatus').classList.add('show');setTimeout(()=>$('characterStatus').classList.remove('show'),1000)});
+document.querySelectorAll('[data-clothes]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-clothes]').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.clothes=b.dataset.clothes});
+function showCharacter(){menu.classList.add('hidden');intro.classList.add('hidden');character.classList.remove('hidden');$('name').value=state.name}
+$('menuPlay').onclick=showCharacter;$('playText').onclick=showCharacter;
+$('menuContinue').onclick=$('continueText').onclick=()=>{if(load()){showCharacter();toast('Partida recuperada. Pulsa Entrar para continuar.')}else toast('No hay una partida guardada.')};
+$('menuHelp').onclick=$('helpText').onclick=()=>dialog('Cómo jugar','Explora libremente. Acércate a personas y lugares importantes y pulsa E. Tus decisiones aumentan Fe, Bondad o Discernimiento y cambian el final. Puedes guardar con P.');
+$('menuSettings').onclick=$('settingsText').onclick=()=>dialog('Ajustes','La aventura usa controles de teclado. El progreso se guarda localmente en este navegador.');
+$('menuExit').onclick=$('exitText').onclick=()=>toast('Puedes cerrar esta pestaña para salir.');
+$('backToMenu').onclick=()=>{character.classList.add('hidden');menu.classList.remove('hidden')};
+$('begin').onclick=()=>{ $('introGate').classList.add('open');setTimeout(()=>{intro.classList.add('hidden');showCharacter()},850) };
+
+const canvas=$('game'), renderer=new THREE.WebGLRenderer({canvas,antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.outputColorSpace=THREE.SRGBColorSpace;
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x9bc4dc);scene.fog=new THREE.Fog(0x9bc4dc,55,240);
+const cam=new THREE.PerspectiveCamera(58,innerWidth/innerHeight,.1,500);cam.position.set(12,9,18);
+const light=new THREE.HemisphereLight(0xffe2ad,0x52645d,2.2);scene.add(light);
+const sun=new THREE.DirectionalLight(0xffe0aa,3);sun.position.set(-35,55,20);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);scene.add(sun);
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(260,260),new THREE.MeshStandardMaterial({color:0xc89a60,roughness:1}));ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;scene.add(ground);
+function mat(c){return new THREE.MeshStandardMaterial({color:c,roughness:.9})}
+for(let i=0;i<70;i++){const m=new THREE.Mesh(new THREE.SphereGeometry(THREE.MathUtils.randFloat(1.5,6),10,7),mat(0xb5824e));m.scale.y=.3;m.position.set((Math.random()-.5)*220,.15,(Math.random()-.5)*220);scene.add(m)}
+function tree(x,z,k=1){const t=new THREE.Mesh(new THREE.CylinderGeometry(.35,.55,4*k,8),mat(0x624029));t.position.set(x,2*k,z);const q=new THREE.Mesh(new THREE.SphereGeometry(2.2*k,10,8),mat(0x47703e));q.position.set(x,5*k,z);q.scale.y=.8;t.castShadow=q.castShadow=true;scene.add(t,q)}
+for(let i=0;i<35;i++)tree((Math.random()-.5)*120,(Math.random()-.5)*120,.5+Math.random()*.8);
+
+const camp=new THREE.Group();camp.position.set(-25,0,-8);scene.add(camp);
+for(let i=0;i<11;i++){let a=i*Math.PI*2/11,t=new THREE.Mesh(new THREE.ConeGeometry(3.2,5.5,4),mat(0x8d5b39));t.position.set(Math.cos(a)*12,2.75,Math.sin(a)*8);camp.add(t)}
+const fire=new THREE.Mesh(new THREE.SphereGeometry(1.3,12,8),new THREE.MeshStandardMaterial({color:0xffa52f,emissive:0xff5a00,emissiveIntensity:2}));fire.position.set(0,1,0);camp.add(fire);const fireLight=new THREE.PointLight(0xff8a2a,18,20);fireLight.position.set(0,3,0);camp.add(fireLight);
+
+function makeDoor(x,z){const g=new THREE.Group();g.position.set(x,0,z);scene.add(g);const stone=mat(0x76624a),wood=mat(0x5a381e),gold=mat(0xc89a52);let a=new THREE.Mesh(new THREE.BoxGeometry(9,1.6,1.6),stone);a.position.y=8.4;g.add(a);for(const sx of [-3.7,3.7]){let p=new THREE.Mesh(new THREE.BoxGeometry(1.5,8,1.6),stone);p.position.set(sx,4,0);g.add(p)}let leaf=new THREE.Group();leaf.position.x=-3.05;g.add(leaf);let lm=new THREE.Mesh(new THREE.BoxGeometry(6.1,7.2,.55),wood);lm.position.set(3.05,3.6,0);leaf.add(lm);for(let y=1.2;y<7;y+=1.9){let band=new THREE.Mesh(new THREE.BoxGeometry(5.5,.18,.65),gold);band.position.set(3.05,y,0);leaf.add(band)}let ring=new THREE.Mesh(new THREE.TorusGeometry(1,.08,8,32),gold);ring.position.set(3.05,3.6,.35);leaf.add(ring);return {g,leaf}}
+const door1=makeDoor(-17,-8),door2=makeDoor(83,-52), door3=makeDoor(84,52);
+
+const oasis=new THREE.Group();oasis.position.set(48,0,-42);scene.add(oasis);let pool=new THREE.Mesh(new THREE.CylinderGeometry(10,10,.35,48),new THREE.MeshStandardMaterial({color:0x3e9db5,roughness:.15,metalness:.1}));pool.position.y=.18;oasis.add(pool);for(let i=0;i<9;i++)tree(48+Math.cos(i)*13,-42+Math.sin(i)*11,.55+Math.random()*.3);
+const ruins=new THREE.Group();ruins.position.set(62,0,30);scene.add(ruins);for(let i=0;i<9;i++){let q=new THREE.Mesh(new THREE.BoxGeometry(2.4,8+Math.random()*5,2.4),mat(0x8d755a));q.position.set((i-4)*4,4,(i%2)*5);q.castShadow=true;ruins.add(q)}
+const bridge=new THREE.Group();bridge.position.set(84,0,8);scene.add(bridge);for(let i=0;i<12;i++){let p=new THREE.Mesh(new THREE.BoxGeometry(4,.8,3),mat(0x72583d));p.position.set(i*4-22,.4,0);bridge.add(p)}
+function npc(x,z,color=0xddd0b2){const g=new THREE.Group();g.position.set(x,0,z);let b=new THREE.Mesh(new THREE.CapsuleGeometry(.7,1.6,5,10),mat(color));b.position.y=1.9;let h=new THREE.Mesh(new THREE.SphereGeometry(.68,16,12),mat(0x875739));h.position.y=3.8;g.add(b,h);scene.add(g);return g}
+const elder=npc(-18,-8), traveler=npc(45,-37,0x9c8260), stranger=npc(72,28,0x4c5c6a), shepherd=npc(70,-25,0xb7a78d);
+
+const player=new THREE.Group();player.position.set(-5,0,5);scene.add(player);const skin=mat(0x875739),cloth=mat(0xb8a37f),dark=mat(0x3b291d);let body=new THREE.Mesh(new THREE.CapsuleGeometry(.75,1.7,5,10),cloth);body.position.y=2;let head=new THREE.Mesh(new THREE.SphereGeometry(.7,16,12),skin);head.position.y=4;let hair=new THREE.Mesh(new THREE.SphereGeometry(.74,16,10,0,Math.PI*2,0,Math.PI*.55),dark);hair.position.y=4.25;player.add(body,head,hair);
+
+const sites=[{name:'Campamento',pos:camp.position},{name:'Manantial',pos:oasis.position},{name:'Ruinas',pos:ruins.position},{name:'Puente de la Decisión',pos:bridge.position},{name:'Puerta de la Promesa',pos:door3.g.position}];
+function distanceTo(o){return player.position.distanceTo(o.position)}
+function interaction(){
+ if(distanceTo(door1.g)<7&&!state.doorOpen){state.doorOpen=true;door1.leaf.rotation.y=-Math.PI*.88;setQuest(1,'Habla con el anciano del campamento.');toast('La Primera Puerta se ha abierto.');return}
+ if(distanceTo(elder)<6&&state.quest===1){dialog('Anciano del campamento','“No basta con llegar lejos; importa cómo caminas. Toma provisiones y busca el manantial. Allí aprenderás que lo recibido también puede compartirse.”',[{label:'Escuchar con fe',action:()=>{state.faith+=1;state.provisions=2;setQuest(2,'Busca el manantial y lleva agua al campamento.')}},{label:'Preguntar con discernimiento',action:()=>{state.discernment+=1;state.provisions=2;setQuest(2,'Busca el manantial y lleva agua al campamento.')}}]);return}
+ if(distanceTo(oasis)<11&&state.quest===2){state.waterInv=2;state.water=100;setQuest(3,'Regresa al campamento y decide qué hacer con tus provisiones.');toast('Has llenado tus recipientes.');return}
+ if(distanceTo(camp)<18&&state.quest===3){dialog('Anciano del campamento','Al volver encuentras a una familia que también necesita agua.',[{label:'Compartir el agua',action:()=>{state.kindness+=2;state.waterInv=Math.max(0,state.waterInv-1);setQuest(4,'Ve hacia las ruinas. Una prueba te espera allí.')}},{label:'Guardar el agua',action:()=>{state.discernment+=1;setQuest(4,'Ve hacia las ruinas. Una prueba te espera allí.')}}]);return}
+ if(distanceTo(ruins)<12&&state.quest===4){dialog('Las ruinas','Encuentras una antigua inscripción: “La fuerza sin sabiduría puede perder el camino”. Una senda segura y otra rápida aparecen ante ti.',[{label:'Seguir la senda segura',action:()=>{state.discernment+=2;setQuest(5,'Busca al viajero cerca del valle.')}},{label:'Tomar la senda rápida',action:()=>{state.faith+=1;state.hp=Math.max(65,state.hp-20);setQuest(5,'Busca al viajero cerca del valle.')}}]);return}
+ if(distanceTo(traveler)<7&&state.quest===5){dialog('Viajero herido','“No puedo continuar. ¿Me ayudarás?”',[{label:'Ayudarlo',action:()=>{state.kindness+=2;state.provisions=Math.max(0,state.provisions-1);setQuest(6,'Cruza el puente y enfrenta la decisión final.')}},{label:'Continuar solo',action:()=>{state.discernment+=1;setQuest(6,'Cruza el puente y enfrenta la decisión final.')}}]);return}
+ if(distanceTo(bridge)<10&&state.quest===6){dialog('Puente de la Decisión','Del otro lado hay una recompensa, pero alguien pide ayuda. ¿Qué guía tus pasos?',[{label:'Fe: avanzar confiando',action:()=>{state.faith+=2;setQuest(7,'Llega a la Puerta de la Promesa.')}},{label:'Bondad: volver por quien necesita ayuda',action:()=>{state.kindness+=2;setQuest(7,'Llega a la Puerta de la Promesa.')}},{label:'Discernimiento: observar antes de actuar',action:()=>{state.discernment+=2;setQuest(7,'Llega a la Puerta de la Promesa.')}}]);return}
+ if(distanceTo(door3.g)<9&&state.quest===7){finishGame();return}
+ toast('Acércate a una persona o lugar importante.');
+}
+function finishGame(){
+ if(state.ending)return;state.ending=true;
+ const total=state.faith+state.kindness+state.discernment;let title,text;
+ if(state.kindness>=state.faith&&state.kindness>=state.discernment){title='EL CAMINO DEL CORAZÓN';text='Has descubierto que la promesa no se trata solo de conquistar una tierra, sino de servir a quienes caminan contigo.'}
+ else if(state.discernment>=state.faith){title='EL CAMINO DE LA SABIDURÍA';text='Has aprendido a mirar más allá de lo evidente. Tus decisiones muestran que la valentía necesita discernimiento.'}
+ else {title='EL CAMINO DE LA FE';text='Has avanzado sin ver todo el camino. Tu fe te permitió cruzar puertas que todavía no comprendías.'}
+ setQuest(8,'La aventura continúa…');dialog(title,text+'\\n\\nFE '+state.faith+' · BONDAD '+state.kindness+' · DISCERNIMIENTO '+state.discernment+'\\n\\nHas completado el Capítulo I. Este final queda guardado como tu legado.',[{label:'Guardar legado',action:()=>{save();state.active=false;toast('Legado guardado. Puedes volver a jugar.')}}]);
+}
+
+$('enter').onclick=()=>{
+ state.name=($('name').value||'').trim()||'Viajero';state.active=true;state.ending=false;
+ if(state.quest===0)state.quest=1;updateHUD();character.classList.add('hidden');hud.classList.remove('hidden');
+ $('arrivalCinematic').classList.remove('hidden');setTimeout(()=>{},30);save();
 };
+$('continueArrival').onclick=()=>{$('arrivalCinematic').classList.add('hidden');setQuest(state.chapter,state.chapter===1?'Habla con el anciano del campamento.':$('obj').textContent);toast('Tu aventura comienza.');};
 
-// ============ SCREEN NAVIGATION ============
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('screen-' + id).classList.add('active');
-  State.screen = id;
-}
-
-function goToMenu() { showScreen('menu'); }
-function goToCreate() { showScreen('create'); }
-
-function selectAvatar(i) {
-  State.char.avatar = i;
-  document.querySelectorAll('.preview-avatar').forEach(a => a.classList.remove('selected'));
-  document.querySelector(`.preview-avatar[data-av="${i}"]`).classList.add('selected');
-}
-function selectRole(el) {
-  State.char.role = el.dataset.role;
-  document.querySelectorAll('[data-role]').forEach(c => c.classList.remove('selected'));
-  el.classList.add('selected');
-}
-function selectOutfit(el) {
-  State.char.outfit = el.dataset.outfit;
-  document.querySelectorAll('[data-outfit]').forEach(c => c.classList.remove('selected'));
-  el.classList.add('selected');
-}
-
-function startAdventure() {
-  const name = document.getElementById('char-name').value.trim() || 'Eliab';
-  State.char.name = name;
-  document.getElementById('hud-name').textContent = name;
-  document.getElementById('hud-role').textContent =
-    State.char.role.charAt(0).toUpperCase() + State.char.role.slice(1) + ' del campamento';
-  showScreen('intro');
-}
-
-function enterWorld() {
-  showScreen('game');
-  if (!State.playing) initGame();
-  State.playing = true;
-}
-
-function loadGame() {
-  const save = localStorage.getItem('cttp_save');
-  if (save) {
-    try {
-      const data = JSON.parse(save);
-      Object.assign(State.char, data.char);
-      Object.assign(State.stats, data.stats);
-      Object.assign(State.inventory, data.inventory);
-      Object.assign(State.mission, data.mission);
-      document.getElementById('char-name').value = State.char.name;
-      enterWorld();
-      notify('Partida cargada');
-    } catch(e) { notify('No hay partida guardada'); }
-  } else {
-    notify('No hay partida guardada');
-  }
-}
-
-function saveGame() {
-  localStorage.setItem('cttp_save', JSON.stringify({
-    char: State.char, stats: State.stats,
-    inventory: State.inventory, mission: State.mission
-  }));
-}
-
-function showSettings() { alert('Ajustes: Volumen, Calidad gráfica, Controles (próximamente)'); }
-function showHelp() {
-  alert('CONTROLES:\n\nWASD / Flechas — Moverse\nShift — Correr\nE — Interactuar\nI — Inventario\nM — Misiones\n\nOBJETIVO:\nExplora el campamento, habla con el Anciano, recoge recursos y abre la Primera Puerta.');
-}
-function exitGame() {
-  if (confirm('¿Seguro que deseas salir?')) {
-    saveGame();
-    location.reload();
-  }
-}
-
-// ============ THREE.JS WORLD ============
-let scene, camera, renderer, player, clock;
-let interactables = [];
-let keys = {};
-let currentInteractable = null;
-let cameraAngle = 0;
-let cameraPitch = 0.4;
-let cameraDist = 8;
-let waterMesh, fireFlame, fireLight, dustParticles;
-let time = 0;
-
-function initGame() {
-  const canvas = document.getElementById('game-canvas');
-  scene = new THREE.Scene();
-  
-  // Skybox con imagen real
-  const skyTex = new THREE.TextureLoader().load(TEX.sky);
-  skyTex.mapping = THREE.EquirectangularReflectionMapping;
-  scene.background = new THREE.Color(0xd4a574);
-  scene.fog = new THREE.FogExp2(0xd4a574, 0.012);
-
-  camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 500);
-  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.1;
-  renderer.outputEncoding = THREE.sRGBEncoding;
-
-  clock = new THREE.Clock();
-
-  // === ILUMINACIÓN REALISTA ===
-  // Luz ambiente cálida (atardecer)
-  const ambient = new THREE.AmbientLight(0xffd4a0, 0.4);
-  scene.add(ambient);
-
-  // Sol principal con sombras suaves
-  const sun = new THREE.DirectionalLight(0xffe4b5, 1.3);
-  sun.position.set(50, 80, 40);
-  sun.castShadow = true;
-  sun.shadow.mapSize.width = 2048;
-  sun.shadow.mapSize.height = 2048;
-  sun.shadow.camera.near = 0.5;
-  sun.shadow.camera.far = 200;
-  sun.shadow.camera.left = -80;
-  sun.shadow.camera.right = 80;
-  sun.shadow.camera.top = 80;
-  sun.shadow.camera.bottom = -80;
-  sun.shadow.bias = -0.0001;
-  scene.add(sun);
-
-  // Luz hemisférica (cielo/suelo)
-  const hemi = new THREE.HemisphereLight(0xffd4a0, 0x8b6914, 0.35);
-  scene.add(hemi);
-
-  // Luz de relleno suave
-  const fill = new THREE.DirectionalLight(0xffa060, 0.3);
-  fill.position.set(-30, 20, -20);
-  scene.add(fill);
-
-  // === TERRENO CON RELIEVE ===
-  const sandTex = new THREE.TextureLoader().load(TEX.sand);
-  sandTex.wrapS = sandTex.wrapT = THREE.RepeatWrapping;
-  sandTex.repeat.set(30, 30);
-  sandTex.anisotropy = renderer.capabilities.getMaxAnisotropy();
-
-  const groundGeo = new THREE.PlaneGeometry(200, 200, 128, 128);
-  // Añadir relieve al terreno
-  const pos = groundGeo.attributes.position;
-  for (let i = 0; i < pos.count; i++) {
-    const x = pos.getX(i);
-    const y = pos.getY(i);
-    // Ondulaciones suaves del desierto
-    const h = Math.sin(x * 0.05) * Math.cos(y * 0.05) * 0.5 +
-              Math.sin(x * 0.1 + y * 0.1) * 0.3 +
-              Math.random() * 0.1;
-    pos.setZ(i, h);
-  }
-  groundGeo.computeVertexNormals();
-
-  const groundMat = new THREE.MeshStandardMaterial({
-    map: sandTex,
-    roughness: 0.95,
-    metalness: 0.0,
-    color: 0xd4a574
-  });
-  const ground = new THREE.Mesh(groundGeo, groundMat);
-  ground.rotation.x = -Math.PI / 2;
-  ground.receiveShadow = true;
-  scene.add(ground);
-
-  // === MONTAÑAS DISTANTES ===
-  const stoneTex = new THREE.TextureLoader().load(TEX.stone);
-  stoneTex.wrapS = stoneTex.wrapT = THREE.RepeatWrapping;
-  stoneTex.repeat.set(3, 3);
-  
-  for (let i = 0; i < 16; i++) {
-    const angle = (i / 16) * Math.PI * 2;
-    const dist = 90 + Math.random() * 20;
-    const h = 20 + Math.random() * 25;
-    const mt = new THREE.Mesh(
-      new THREE.ConeGeometry(10 + Math.random() * 8, h, 8),
-      new THREE.MeshStandardMaterial({ 
-        map: stoneTex, 
-        roughness: 0.9, 
-        color: 0xa07040,
-        flatShading: true
-      })
-    );
-    mt.position.set(Math.cos(angle) * dist, h / 2 - 3, Math.sin(angle) * dist);
-    mt.rotation.y = Math.random() * Math.PI;
-    mt.castShadow = true;
-    scene.add(mt);
-  }
-
-  // === CAMPAMENTO ===
-  // Tiendas realistas (conos con textura)
-  const tentTex = new THREE.TextureLoader().load(TEX.sand);
-  tentTex.wrapS = tentTex.wrapT = THREE.RepeatWrapping;
-  tentTex.repeat.set(2, 2);
-  
-  for (let i = 0; i < 4; i++) {
-    const angle = (i / 4) * Math.PI * 2 + 0.3;
-    const tentGroup = new THREE.Group();
-    
-    // Base de la tienda
-    const base = new THREE.Mesh(
-      new THREE.CylinderGeometry(3.5, 3.5, 0.4, 12),
-      new THREE.MeshStandardMaterial({ color: 0x6b4423, roughness: 0.9 })
-    );
-    base.position.y = 0.2;
-    base.castShadow = true;
-    base.receiveShadow = true;
-    tentGroup.add(base);
-    
-    // Cuerpo de la tienda
-    const tent = new THREE.Mesh(
-      new THREE.ConeGeometry(3, 4.5, 12),
-      new THREE.MeshStandardMaterial({ 
-        map: tentTex, 
-        color: 0xc9a876, 
-        roughness: 0.85 
-      })
-    );
-    tent.position.y = 2.6;
-    tent.castShadow = true;
-    tentGroup.add(tent);
-    
-    // Poste central
-    const pole = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.1, 0.1, 5, 6),
-      new THREE.MeshStandardMaterial({ color: 0x4a2a10 })
-    );
-    pole.position.y = 2.5;
-    tentGroup.add(pole);
-    
-    tentGroup.position.set(Math.cos(angle) * 14, 0, Math.sin(angle) * 14);
-    scene.add(tentGroup);
-  }
-
-  // === HOGUERA REALISTA ===
-  const fireGroup = new THREE.Group();
-  
-  // Base de piedras
-  for (let i = 0; i < 8; i++) {
-    const a = (i / 8) * Math.PI * 2;
-    const stone = new THREE.Mesh(
-      new THREE.DodecahedronGeometry(0.4, 0),
-      new THREE.MeshStandardMaterial({ color: 0x5a4a3a, roughness: 0.9 })
-    );
-    stone.position.set(Math.cos(a) * 1, 0.2, Math.sin(a) * 1);
-    stone.castShadow = true;
-    fireGroup.add(stone);
-  }
-  
-  // Leños
-  for (let i = 0; i < 3; i++) {
-    const log = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.15, 0.15, 1.5, 6),
-      new THREE.MeshStandardMaterial({ color: 0x3a2010, roughness: 0.9 })
-    );
-    log.rotation.z = Math.PI / 2;
-    log.rotation.y = (i / 3) * Math.PI;
-    log.position.y = 0.3;
-    fireGroup.add(log);
-  }
-  
-  // Llamas (cono animado)
-  fireFlame = new THREE.Mesh(
-    new THREE.ConeGeometry(0.5, 1.5, 8),
-    new THREE.MeshStandardMaterial({ 
-      color: 0xff6600, 
-      emissive: 0xff4400, 
-      emissiveIntensity: 1.2,
-      transparent: true,
-      opacity: 0.9
-    })
-  );
-  fireFlame.position.y = 1;
-  fireGroup.add(fireFlame);
-  
-  // Luz de fuego dinámica
-  fireLight = new THREE.PointLight(0xff6600, 2, 20);
-  fireLight.position.y = 1.5;
-  fireLight.castShadow = true;
-  fireGroup.add(fireLight);
-  
-  scene.add(fireGroup);
-
-  // === LA PRIMERA PUERTA (Realista) ===
-  const gateGroup = new THREE.Group();
-  const doorTex = new THREE.TextureLoader().load(TEX.wood);
-  doorTex.wrapS = doorTex.wrapT = THREE.RepeatWrapping;
-  
-  const pillarMat = new THREE.MeshStandardMaterial({ 
-    map: stoneTex, 
-    color: 0x8b7355, 
-    roughness: 0.85,
-    flatShading: true
-  });
-  
-  // Pilares con detalles
-  const leftPillar = new THREE.Mesh(new THREE.BoxGeometry(2, 7, 2), pillarMat);
-  leftPillar.position.set(-3.5, 3.5, 0);
-  leftPillar.castShadow = true;
-  const rightPillar = new THREE.Mesh(new THREE.BoxGeometry(2, 7, 2), pillarMat);
-  rightPillar.position.set(3.5, 3.5, 0);
-  rightPillar.castShadow = true;
-  
-  // Arco superior
-  const topBeam = new THREE.Mesh(new THREE.BoxGeometry(9, 1.5, 2), pillarMat);
-  topBeam.position.set(0, 7, 0);
-  topBeam.castShadow = true;
-  
-  // Puertas de madera
-  const doorMat = new THREE.MeshStandardMaterial({ 
-    map: doorTex, 
-    color: 0x6b4423, 
-    roughness: 0.8 
-  });
-  const doorL = new THREE.Mesh(new THREE.BoxGeometry(3.3, 6, 0.4), doorMat);
-  doorL.position.set(-1.65, 3, 0);
-  doorL.castShadow = true;
-  const doorR = new THREE.Mesh(new THREE.BoxGeometry(3.3, 6, 0.4), doorMat);
-  doorR.position.set(1.65, 3, 0);
-  doorR.castShadow = true;
-  
-  // Herrajes de hierro
-  const ironMat = new THREE.MeshStandardMaterial({ color: 0x2a2a2a, metalness: 0.8, roughness: 0.4 });
-  for (let side of [-1, 1]) {
-    const hinge = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.8, 0.5), ironMat);
-    hinge.position.set(side * 3.3, 2, 0.3);
-    gateGroup.add(hinge);
-    const hinge2 = hinge.clone();
-    hinge2.position.y = 4;
-    gateGroup.add(hinge2);
-  }
-  
-  gateGroup.add(leftPillar, rightPillar, topBeam, doorL, doorR);
-  gateGroup.position.set(0, 0, -28);
-  scene.add(gateGroup);
-
-  // Estandarte
-  const banner = new THREE.Mesh(
-    new THREE.PlaneGeometry(2.5, 3.5),
-    new THREE.MeshStandardMaterial({ color: 0x8b0000, side: THREE.DoubleSide, roughness: 0.8 })
-  );
-  banner.position.set(0, 5, -26.5);
-  scene.add(banner);
-
-  interactables.push({
-    mesh: gateGroup, name: 'La Primera Puerta', action: 'open_gate',
-    radius: 6, position: new THREE.Vector3(0, 0, -28)
-  });
-
-  // === OASIS REALISTA ===
-  const waterTex = new THREE.TextureLoader().load(TEX.water);
-  waterTex.wrapS = waterTex.wrapT = THREE.RepeatWrapping;
-  waterTex.repeat.set(2, 2);
-  
-  const oasisGroup = new THREE.Group();
-  
-  // Agua con shader animado
-  const waterGeo = new THREE.CircleGeometry(5, 32);
-  const waterMat = new THREE.MeshStandardMaterial({
-    map: waterTex,
-    color: 0x4a90a8,
-    roughness: 0.2,
-    metalness: 0.3,
-    transparent: true,
-    opacity: 0.85
-  });
-  waterMesh = new THREE.Mesh(waterGeo, waterMat);
-  waterMesh.rotation.x = -Math.PI / 2;
-  waterMesh.position.y = 0.1;
-  oasisGroup.add(waterMesh);
-  
-  // Borde de piedras
-  for (let i = 0; i < 16; i++) {
-    const a = (i / 16) * Math.PI * 2;
-    const rock = new THREE.Mesh(
-      new THREE.DodecahedronGeometry(0.7 + Math.random() * 0.3, 0),
-      new THREE.MeshStandardMaterial({ color: 0x6a5a4a, roughness: 0.9, flatShading: true })
-    );
-    rock.position.set(Math.cos(a) * 5.5, 0.4, Math.sin(a) * 5.5);
-    rock.rotation.set(Math.random(), Math.random(), Math.random());
-    rock.castShadow = true;
-    oasisGroup.add(rock);
-  }
-  
-  // Palmeras realistas alrededor
-  const palmTex = new THREE.TextureLoader().load(TEX.palm);
-  for (let i = 0; i < 6; i++) {
-    const a = (i / 6) * Math.PI * 2 + 0.5;
-    const palmGroup = new THREE.Group();
-    
-    // Tronco con textura
-    const trunk = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.25, 0.35, 5, 8),
-      new THREE.MeshStandardMaterial({ 
-        map: palmTex, 
-        color: 0x8b6914, 
-        roughness: 0.9 
-      })
-    );
-    trunk.position.y = 2.5;
-    trunk.castShadow = true;
-    palmGroup.add(trunk);
-    
-    // Copa de hojas
-    for (let j = 0; j < 6; j++) {
-      const leaf = new THREE.Mesh(
-        new THREE.ConeGeometry(0.8, 2.5, 4),
-        new THREE.MeshStandardMaterial({ color: 0x2d5a27, roughness: 0.8 })
-      );
-      const la = (j / 6) * Math.PI * 2;
-      leaf.position.set(Math.cos(la) * 0.8, 5.5, Math.sin(la) * 0.8);
-      leaf.rotation.z = Math.cos(la) * 0.5;
-      leaf.rotation.x = Math.sin(la) * 0.5;
-      leaf.castShadow = true;
-      palmGroup.add(leaf);
-    }
-    
-    palmGroup.position.set(Math.cos(a) * 7, 0, Math.sin(a) * 7);
-    oasisGroup.add(palmGroup);
-  }
-  
-  oasisGroup.position.set(28, 0, 22);
-  scene.add(oasisGroup);
-  
-  interactables.push({
-    mesh: oasisGroup, name: 'Manantial del Oasis', action: 'drink_water',
-    radius: 6, position: new THREE.Vector3(28, 0, 22)
-  });
-
-  // === ÁRBOLES (Madera) ===
-  const woodTex = new THREE.TextureLoader().load(TEX.wood);
-  for (let i = 0; i < 18; i++) {
-    let x = (Math.random() - 0.5) * 90;
-    let z = (Math.random() - 0.5) * 90;
-    if (Math.abs(x) < 10 && Math.abs(z) < 10) continue;
-    if (Math.hypot(x - 28, z - 22) < 12) continue;
-    if (Math.hypot(x, z + 28) < 10) continue;
-    
-    const treeGroup = new THREE.Group();
-    
-    // Tronco
-    const trunk = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.3, 0.4, 3.5, 8),
-      new THREE.MeshStandardMaterial({ 
-        map: woodTex, 
-        color: 0x5a3a1a, 
-        roughness: 0.9 
-      })
-    );
-    trunk.position.y = 1.75;
-    trunk.castShadow = true;
-    treeGroup.add(trunk);
-    
-    // Copa (múltiples conos para más realismo)
-    for (let j = 0; j < 3; j++) {
-      const crown = new THREE.Mesh(
-        new THREE.ConeGeometry(2 - j * 0.4, 2, 8),
-        new THREE.MeshStandardMaterial({ 
-          color: new THREE.Color(0x2d5a27).lerp(new THREE.Color(0x4a7a37), j * 0.3),
-          roughness: 0.8 
-        })
-      );
-      crown.position.y = 3.5 + j * 1.2;
-      crown.castShadow = true;
-      treeGroup.add(crown);
-    }
-    
-    treeGroup.position.set(x, 0, z);
-    scene.add(treeGroup);
-    
-    interactables.push({
-      mesh: treeGroup, name: 'Árbol del desierto', action: 'collect_wood',
-      radius: 3, position: new THREE.Vector3(x, 0, z), collected: false
-    });
-  }
-
-  // === ROCAS (Piedra) ===
-  for (let i = 0; i < 15; i++) {
-    let x = (Math.random() - 0.5) * 90;
-    let z = (Math.random() - 0.5) * 90;
-    if (Math.abs(x) < 10 && Math.abs(z) < 10) continue;
-    if (Math.hypot(x - 28, z - 22) < 12) continue;
-    if (Math.hypot(x, z + 28) < 10) continue;
-    
-    const rockGroup = new THREE.Group();
-    const mainRock = new THREE.Mesh(
-      new THREE.DodecahedronGeometry(1 + Math.random() * 0.8, 1),
-      new THREE.MeshStandardMaterial({ 
-        map: stoneTex, 
-        color: 0x7a6a5a, 
-        roughness: 0.9, 
-        flatShading: true 
-      })
-    );
-    mainRock.position.y = 0.6;
-    mainRock.rotation.set(Math.random(), Math.random(), Math.random());
-    mainRock.castShadow = true;
-    rockGroup.add(mainRock);
-    
-    // Rocas pequeñas alrededor
-    for (let j = 0; j < 3; j++) {
-      const small = new THREE.Mesh(
-        new THREE.DodecahedronGeometry(0.3 + Math.random() * 0.3, 0),
-        new THREE.MeshStandardMaterial({ color: 0x6a5a4a, roughness: 0.9, flatShading: true })
-      );
-      small.position.set((Math.random() - 0.5) * 2, 0.2, (Math.random() - 0.5) * 2);
-      small.castShadow = true;
-      rockGroup.add(small);
-    }
-    
-    rockGroup.position.set(x, 0, z);
-    scene.add(rockGroup);
-    
-    interactables.push({
-      mesh: rockGroup, name: 'Roca', action: 'collect_stone',
-      radius: 2.5, position: new THREE.Vector3(x, 0, z), collected: false
-    });
-  }
-
-  // === ANCIANO NPC ===
-  const elderGroup = new THREE.Group();
-  
-  // Túnica
-  const robe = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.4, 0.6, 2, 8),
-    new THREE.MeshStandardMaterial({ color: 0xf5f0e0, roughness: 0.8 })
-  );
-  robe.position.y = 1;
-  robe.castShadow = true;
-  elderGroup.add(robe);
-  
-  // Cabeza
-  const head = new THREE.Mesh(
-    new THREE.SphereGeometry(0.35, 16, 16),
-    new THREE.MeshStandardMaterial({ color: 0xd4a574, roughness: 0.7 })
-  );
-  head.position.y = 2.2;
-  head.castShadow = true;
-  elderGroup.add(head);
-  
-  // Barba
-  const beard = new THREE.Mesh(
-    new THREE.ConeGeometry(0.25, 0.7, 6),
-    new THREE.MeshStandardMaterial({ color: 0xe8e8e8, roughness: 0.9 })
-  );
-  beard.position.set(0, 1.9, 0.3);
-  elderGroup.add(beard);
-  
-  // Bastón
-  const staff = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.05, 0.05, 2.8, 6),
-    new THREE.MeshStandardMaterial({ color: 0x4a2a10, roughness: 0.8 })
-  );
-  staff.position.set(0.6, 1.4, 0);
-  elderGroup.add(staff);
-  
-  // Sombrero/turbante
-  const turban = new THREE.Mesh(
-    new THREE.SphereGeometry(0.4, 12, 12),
-    new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.8 })
-  );
-  turban.position.y = 2.4;
-  elderGroup.add(turban);
-  
-  elderGroup.position.set(-7, 0, -7);
-  scene.add(elderGroup);
-  
-  interactables.push({
-    mesh: elderGroup, name: 'Anciano del campamento', action: 'talk_elder',
-    radius: 3.5, position: new THREE.Vector3(-7, 0, -7)
-  });
-
-  // === JUGADOR ===
-  const playerGroup = new THREE.Group();
-  
-  const outfitColor = State.char.outfit === 'desierto' ? 0xc9a876 : 0x8b6914;
-  
-  // Cuerpo
-  const pBody = new THREE.Mesh(
-    new THREE.CapsuleGeometry(0.35, 1.2, 4, 12),
-    new THREE.MeshStandardMaterial({ color: outfitColor, roughness: 0.7 })
-  );
-  pBody.position.y = 1.1;
-  pBody.castShadow = true;
-  playerGroup.add(pBody);
-  
-  // Cabeza
-  const pHead = new THREE.Mesh(
-    new THREE.SphereGeometry(0.32, 16, 16),
-    new THREE.MeshStandardMaterial({ color: 0xd4a574, roughness: 0.6 })
-  );
-  pHead.position.y = 2.1;
-  pHead.castShadow = true;
-  playerGroup.add(pHead);
-  
-  // Capa/túnica
-  const cloak = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.5, 0.7, 1.5, 8),
-    new THREE.MeshStandardMaterial({ color: outfitColor, roughness: 0.8 })
-  );
-  cloak.position.y = 0.8;
-  playerGroup.add(cloak);
-  
-  playerGroup.position.set(0, 0, 6);
-  scene.add(playerGroup);
-  player = playerGroup;
-
-  // === PARTÍCULAS DE POLVO ===
-  const dustGeo = new THREE.BufferGeometry();
-  const dustCount = 200;
-  const dustPos = new Float32Array(dustCount * 3);
-  for (let i = 0; i < dustCount; i++) {
-    dustPos[i * 3] = (Math.random() - 0.5) * 60;
-    dustPos[i * 3 + 1] = Math.random() * 5;
-    dustPos[i * 3 + 2] = (Math.random() - 0.5) * 60;
-  }
-  dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
-  const dustMat = new THREE.PointsMaterial({
-    color: 0xffd4a0,
-    size: 0.08,
-    transparent: true,
-    opacity: 0.4
-  });
-  dustParticles = new THREE.Points(dustGeo, dustMat);
-  scene.add(dustParticles);
-
-  // Input
-  window.addEventListener('keydown', e => {
-    keys[e.key.toLowerCase()] = true;
-    if (e.key === 'Shift') keys.shift = true;
-    if (e.key.toLowerCase() === 'e') handleInteract();
-    if (e.key.toLowerCase() === 'i') toggleInventory();
-    if (e.key.toLowerCase() === 'm') toggleMissions();
-  });
-  window.addEventListener('keyup', e => {
-    keys[e.key.toLowerCase()] = false;
-    if (e.key === 'Shift') keys.shift = false;
-  });
-  window.addEventListener('resize', onResize);
-
-  // Ocultar loading
-  document.getElementById('loading').style.display = 'none';
-
-  animate();
-}
-
-function onResize() {
-  if (!camera || !renderer) return;
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-}
-
-// ============ GAME LOOP ============
-function animate() {
-  requestAnimationFrame(animate);
-  if (!State.playing) return;
-  const dt = Math.min(clock.getDelta(), 0.05);
-  time += dt;
-
-  // Animar agua (ondas)
-  if (waterMesh) {
-    waterMesh.material.map.offset.x = Math.sin(time * 0.3) * 0.1;
-    waterMesh.material.map.offset.y = Math.cos(time * 0.2) * 0.1;
-  }
-
-  // Animar fuego
-  if (fireFlame) {
-    fireFlame.scale.y = 1 + Math.sin(time * 8) * 0.2;
-    fireFlame.scale.x = 1 + Math.cos(time * 6) * 0.1;
-    fireFlame.position.y = 1 + Math.sin(time * 5) * 0.1;
-  }
-  if (fireLight) {
-    fireLight.intensity = 2 + Math.sin(time * 10) * 0.5;
-  }
-
-  // Animar partículas de polvo
-  if (dustParticles) {
-    const pos = dustParticles.geometry.attributes.position;
-    for (let i = 0; i < pos.count; i++) {
-      let y = pos.getY(i);
-      y += dt * 0.3;
-      if (y > 5) y = 0;
-      pos.setY(i, y);
-      pos.setX(i, pos.getX(i) + Math.sin(time + i) * dt * 0.1);
-    }
-    pos.needsUpdate = true;
-  }
-
-  // Player movement
-  if (!State.dialog.active) {
-    const speed = (keys.shift && State.stats.stamina > 0) ? 7 : 4;
-    const dir = new THREE.Vector3();
-    if (keys.w || keys.arrowup) dir.z -= 1;
-    if (keys.s || keys.arrowdown) dir.z += 1;
-    if (keys.a || keys.arrowleft) dir.x -= 1;
-    if (keys.d || keys.arrowright) dir.x += 1;
-
-    if (dir.lengthSq() > 0) {
-      dir.normalize();
-      const camDir = new THREE.Vector3();
-      camera.getWorldDirection(camDir);
-      camDir.y = 0;
-      camDir.normalize();
-      const right = new THREE.Vector3().crossVectors(camDir, new THREE.Vector3(0, 1, 0));
-      const move = new THREE.Vector3()
-        .addScaledVector(camDir, -dir.z)
-        .addScaledVector(right, dir.x);
-      player.position.addScaledVector(move, speed * dt);
-      player.lookAt(player.position.clone().add(move));
-
-      if (keys.shift) State.stats.stamina = Math.max(0, State.stats.stamina - 15 * dt);
-    } else {
-      State.stats.stamina = Math.min(100, State.stats.stamina + 10 * dt);
-    }
-
-    player.position.x = Math.max(-95, Math.min(95, player.position.x));
-    player.position.z = Math.max(-95, Math.min(95, player.position.z));
-
-    State.stats.water = Math.max(0, State.stats.water - 1.5 * dt);
-    if (State.stats.water <= 0) State.stats.hp = Math.max(0, State.stats.hp - 3 * dt);
-  }
-
-  // Camera follow suave
-  const targetCamPos = player.position.clone()
-    .add(new THREE.Vector3(Math.sin(cameraAngle) * cameraDist, 4 + cameraPitch * 5, Math.cos(cameraAngle) * cameraDist));
-  camera.position.lerp(targetCamPos, 0.08);
-  camera.lookAt(player.position.x, player.position.y + 1.5, player.position.z);
-
-  // Check interactables
-  currentInteractable = null;
-  let minDist = Infinity;
-  for (const obj of interactables) {
-    if (obj.collected) continue;
-    const d = player.position.distanceTo(obj.position);
-    if (d < obj.radius && d < minDist) {
-      minDist = d;
-      currentInteractable = obj;
-    }
-  }
-
-  const prompt = document.getElementById('interaction-prompt');
-  if (currentInteractable && !State.dialog.active) {
-    prompt.style.display = 'block';
-    prompt.innerHTML = `Presiona <b>E</b> — ${currentInteractable.name}`;
-  } else {
-    prompt.style.display = 'none';
-  }
-
-  updateHUD();
-  renderer.render(scene, camera);
-}
-
-function handleInteract() {
-  if (State.dialog.active) { closeDialog(); return; }
-  if (!currentInteractable) return;
-  const act = currentInteractable.action;
-
-  if (act === 'collect_wood') {
-    State.inventory.resources.madera++;
-    currentInteractable.collected = true;
-    scene.remove(currentInteractable.mesh);
-    notify('+1 Madera');
-    saveGame();
-  } else if (act === 'collect_stone') {
-    State.inventory.resources.piedra++;
-    currentInteractable.collected = true;
-    scene.remove(currentInteractable.mesh);
-    notify('+1 Piedra');
-    saveGame();
-  } else if (act === 'drink_water') {
-    State.stats.water = Math.min(100, State.stats.water + 30);
-    notify('+30 Agua');
-    if (State.mission.stage === 1) {
-      State.mission.stage = 2;
-      State.mission.text = '¡Agua obtenida! Regresa con el Anciano.';
-      State.mission.log.push('✓ Agua del manantial obtenida');
-      updateHUD();
-    }
-    saveGame();
-  } else if (act === 'talk_elder') {
-    if (State.mission.stage === 0) {
-      openDialog('ANCIANO', 'Bienvenido, viajero. El campamento tiene sed. Ve al manantial al este y trae agua para nosotros. La Primera Puerta se abrirá cuando completes tu misión.');
-      State.mission.stage = 1;
-      State.mission.text = 'Ve al Manantial (al este) y recoge agua.';
-      State.mission.log.push('Misión: El manantial en el desierto');
-    } else if (State.mission.stage === 2) {
-      openDialog('ANCIANO', 'Has hecho bien. El campamento vivirá un día más. Ahora ve a la Primera Puerta y ábrela. Tu verdadero camino comienza allí.');
-      State.mission.stage = 3;
-      State.mission.text = 'Ve a la Primera Puerta (al norte) y ábrela.';
-      State.mission.log.push('✓ Agua entregada al Anciano');
-    } else if (State.mission.stage === 4) {
-      openDialog('ANCIANO', 'La puerta se ha abierto. El camino hacia la Tierra Prometida comienza ahora. Que Dios te acompañe.');
-    } else {
-      openDialog('ANCIANO', 'El camino es largo, pero la fe te sostendrá. Descansa cuando lo necesites.');
-    }
-  } else if (act === 'open_gate') {
-    if (State.mission.stage >= 3) {
-      openDialog('LA PRIMERA PUERTA', 'Las enormes puertas de madera se abren lentamente con un sonido profundo. Más allá, un camino de piedra se extiende hacia las montañas. El sol de la tarde ilumina un valle verde. Tu viaje hacia la Tierra Prometida... comienza.');
-      State.mission.stage = 4;
-      State.mission.text = 'La Primera Puerta ha sido abierta. Capítulo I completado.';
-      State.mission.log.push('✓ La Primera Puerta abierta');
-      State.mission.log.push(' Capítulo I completado');
-    } else {
-      openDialog('LA PRIMERA PUERTA', 'La puerta está cerrada. Necesitas completar la misión del Anciano primero: lleva agua al campamento.');
-    }
-  }
-}
-
-function openDialog(speaker, text) {
-  State.dialog.active = true;
-  document.getElementById('dialog-speaker').textContent = speaker;
-  document.getElementById('dialog-text').textContent = text;
-  document.getElementById('dialog-box').style.display = 'block';
-  document.getElementById('interaction-prompt').style.display = 'none';
-}
-function closeDialog() {
-  State.dialog.active = false;
-  document.getElementById('dialog-box').style.display = 'none';
-}
-
-function notify(text) {
-  const n = document.getElementById('notification');
-  n.textContent = text;
-  n.style.display = 'block';
-  setTimeout(() => n.style.display = 'none', 2000);
-}
-
-function updateHUD() {
-  document.getElementById('hp-val').textContent = Math.floor(State.stats.hp);
-  document.getElementById('hp-fill').style.width = State.stats.hp + '%';
-  document.getElementById('water-val').textContent = Math.floor(State.stats.water);
-  document.getElementById('water-fill').style.width = State.stats.water + '%';
-  document.getElementById('stamina-val').textContent = Math.floor(State.stats.stamina);
-  document.getElementById('stamina-fill').style.width = State.stats.stamina + '%';
-  document.getElementById('mission-text').textContent = State.mission.text;
-}
-
-function toggleInventory() {
-  const m = document.getElementById('modal-inventory');
-  if (m.classList.contains('active')) { m.classList.remove('active'); return; }
-  document.getElementById('modal-mission').classList.remove('active');
-  const r = State.inventory.resources;
-  document.getElementById('inv-resources').innerHTML =
-    `<div class="modal-item"><span>🪵 Madera</span><span class="qty">${r.madera}</span></div>
-     <div class="modal-item"><span>🪨 Piedra</span><span class="qty">${r.piedra}</span></div>
-     <div class="modal-item"><span>🟫 Cuero</span><span class="qty">${r.cuero}</span></div>
-     <div class="modal-item"><span>🌱 Semillas</span><span class="qty">${r.semillas}</span></div>`;
-  const f = State.inventory.food;
-  document.getElementById('inv-food').innerHTML =
-    `<div class="modal-item"><span>🍞 Pan</span><span class="qty">${f.pan}</span></div>
-     <div class="modal-item"><span>🥩 Carne seca</span><span class="qty">${f.carne_seca}</span></div>
-     <div class="modal-item"><span>🌿 Hierbas</span><span class="qty">${f.hierbas}</span></div>`;
-  const t = State.inventory.tools;
-  document.getElementById('inv-tools').innerHTML =
-    `<div class="modal-item"><span>🪓 Hacha</span><span class="qty">${t.hacha}</span></div>
-     <div class="modal-item"><span>⛏️ Pico</span><span class="qty">${t.pico}</span></div>
-     <div class="modal-item"><span>🏹 Arco</span><span class="qty">${t.arco}</span></div>`;
-  m.classList.add('active');
-}
-
-function toggleMissions() {
-  const m = document.getElementById('modal-mission');
-  if (m.classList.contains('active')) { m.classList.remove('active'); return; }
-  document.getElementById('modal-inventory').classList.remove('active');
-  document.getElementById('mission-list').innerHTML = State.mission.log
-    .map(l => `<div class="modal-item"><span>${l}</span></div>`).join('');
-  m.classList.add('active');
-}
-
-document.querySelectorAll('.modal-overlay').forEach(o => {
-  o.addEventListener('click', e => { if (e.target === o) o.classList.remove('active'); });
+addEventListener('keydown',e=>{
+ if(e.key.toLowerCase()==='e'&&state.active&&!e.repeat)interaction();
+ if(e.key.toLowerCase()==='p'&&state.active&&!e.repeat)save();
+ if(e.key.toLowerCase()==='m'&&state.active&&!e.repeat){const m=$('minimap');m.style.display=m.style.display==='none'?'block':'none';}
 });
+let last=performance.now(), lastSave=performance.now();
+function loop(now){requestAnimationFrame(loop);const dt=Math.min(.04,(now-last)/1000);last=now;
+ if(state.active&&!state.ending){
+  let x=(keys.d||keys.arrowright?1:0)-(keys.a||keys.arrowleft?1:0),z=(keys.s||keys.arrowdown?1:0)-(keys.w||keys.arrowup?1:0);
+  if(x||z){const l=Math.hypot(x,z);x/=l;z/=l;const run=keys.shift&&state.stam>2,v=run?11:7;player.position.x+=x*v*dt;player.position.z+=z*v*dt;player.rotation.y=Math.atan2(x,z);state.stam=Math.max(0,state.stam-(run?24:5)*dt)}else state.stam=Math.min(100,state.stam+16*dt);
+  state.water=Math.max(0,state.water-.35*dt);if(state.water===0)state.hp=Math.max(0,state.hp-1.2*dt);
+  player.position.x=THREE.MathUtils.clamp(player.position.x,-115,115);player.position.z=THREE.MathUtils.clamp(player.position.z,-115,115);
+  const target=new THREE.Vector3(player.position.x+13,9,player.position.z+18);cam.position.lerp(target,.08);cam.lookAt(player.position.x,2,player.position.z);
+  updateHUD();
+  if(now-lastSave>15000){localStorage.setItem('cronicas_tierra_prometida',JSON.stringify(state));lastSave=now}
+  const near=[door1.g,elder,oasis,ruins,traveler,bridge,door3.g].some(o=>distanceTo(o)<8);$('doorPrompt').style.opacity=near?1:0;
+  if(near)$('doorPrompt').textContent='E · Interactuar';
+ }
+ fire.scale.y=1+Math.sin(now*.008)*.15;fireLight.intensity=15+Math.sin(now*.008)*4;
+ const m=$('minimap');if(m.style.display!=='none'){m.innerHTML='<b>MAPA</b><br>● Tú<br>◆ Campamento<br>◆ Manantial<br>◆ Ruinas<br>◆ Puente<br>◆ Puerta final';}
+ renderer.render(scene,cam);
+}
+requestAnimationFrame(loop);
+addEventListener('resize',()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+updateHUD();
 </script>
-</body>
-</html>
+</body></html>
